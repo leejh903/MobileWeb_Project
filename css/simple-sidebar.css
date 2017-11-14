@@ -28,7 +28,8 @@ body {
   height: 100%;
   margin-left: -250px;
   overflow-y: auto;
-  background: #000;
+  /*background: #000;*/
+  background: white;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
@@ -70,7 +71,8 @@ body {
 .sidebar-nav li a {
   display: block;
   text-decoration: none;
-  color: #999999;
+  /*color: #999999;*/
+  color : black;
 }
 
 .sidebar-nav li a:hover {
@@ -84,13 +86,15 @@ body {
 }
 
 .sidebar-nav>.sidebar-brand {
+  background-color:rgb(200, 34, 38);
   height: 65px;
   font-size: 18px;
   line-height: 60px;
 }
 
 .sidebar-nav>.sidebar-brand a {
-  color: #999999;
+  /*color: #999999;*/
+  color: black;
 }
 
 .sidebar-nav>.sidebar-brand a:hover {
