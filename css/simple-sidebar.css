@@ -128,7 +128,7 @@ body {
   background: none;
 }
 
-@media(min-width:768px) {
+/*@media(min-width:768px) {
   #wrapper {
     padding-left: 0;
   }
@@ -149,4 +149,4 @@ body {
     position: relative;
     margin-right: 0;
   }
-}
+}*/
