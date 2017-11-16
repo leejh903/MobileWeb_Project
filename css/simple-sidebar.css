@@ -40,16 +40,34 @@ body {
   width: 250px;
 }
 
+/* 모바일 이상 해상도에서 버튼 숨기기*/
+#navigation_mobile {
+  display : none;
+}
+
+/* 모바일에서 버튼 등장*/
+#navigation_mobile.active{
+  display:block;
+  float : left;
+  padding : 10px;
+}
+
+.container-fluid > div i{
+  color : rgb(200, 34, 38);
+  font-size : 30px;
+}
+
+ /*이 부분 주석 해제하면 본문 내용 짤리게됨 */
 #page-content-wrapper {
   width: 100%;
   position: absolute;
   padding: 15px;
 }
 
-#wrapper.toggled #page-content-wrapper {
+/*#wrapper.toggled #page-content-wrapper {
   position: absolute;
   margin-right: -250px;
-}
+}*/
 
 
 /* Sidebar Styles */
@@ -128,6 +146,22 @@ body {
   background: none;
 }
 
+/*모바일에서 사이드바 활성시 배경 흐리게*/
+/*@media (max-width: 415px) {
+  #block{
+	display: none;
+  }
+
+  #block.active{
+  position: fixed;
+	width: 100%; height: 100%;
+	top: 0; bottom: 0; left: 0; right: 0;
+	background: #111;
+	opacity: 0.5; z-index: 9;
+  display: block;}
+}*/
+
+/* 모바일에서 벗어나면 사이드바 글씨 커지게 하는 부분 제외 */
 /*@media(min-width:768px) {
   #wrapper {
     padding-left: 0;
@@ -148,5 +182,5 @@ body {
   #wrapper.toggled #page-content-wrapper {
     position: relative;
     margin-right: 0;
-  }
-}*/
+  }*/
+}
