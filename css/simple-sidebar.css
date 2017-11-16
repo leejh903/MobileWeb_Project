@@ -57,12 +57,12 @@ body {
   font-size : 30px;
 }
 
- /*이 부분 주석 해제하면 본문 내용 짤리게됨 */
-#page-content-wrapper {
+ /*이 부분 주석 해제하면 본문 내용 짤리게됨*/
+/*#page-content-wrapper {
   width: 100%;
   position: absolute;
   padding: 15px;
-}
+}*/
 
 /*#wrapper.toggled #page-content-wrapper {
   position: absolute;
@@ -144,6 +144,21 @@ body {
 .sidebar-nav>.sidebar-brand a:hover {
   color: #fff;
   background: none;
+}
+
+@media(max-width:768px) {
+  /*모바일 해상도에서 본문 내용 밀리게 설정*/
+  #page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+  }
+
+  #wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+  }
+
 }
 
 /*모바일에서 사이드바 활성시 배경 흐리게*/
