@@ -1,0 +1,70 @@
+/*#calendar_wrap{
+  background: white;
+  width: 350px;
+  text-align: center;
+}
+table {
+    width: 120%;
+    height: 300px;
+}
+th,td{
+  color: black;
+  border: 1px solid #666;
+  border-collapse: collapse;
+}
+th,td{
+  /*width: 100%;*/
+  /*padding-left: 30px;
+  padding-right: 30px;*/
+}
+/*th:first-child, td:first-child{ color: red;}*/
+
+#blank p{
+  height : 600px;
+}
+
+
+#prev, #next{
+  display: inline-block;
+  text-decoration: none;;
+}
+
+/*캡션을 테이블 위로 두기*/
+caption{
+  caption-side:top;
+}
+
+.list-group {
+  padding: 20px;
+}
+
+.list-group-item{
+  border-left-color:white;
+  border-right-color:white;
+}
+
+.btn-circle.btn-lg {
+  position:absolute;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  /*padding: 10px 15px;*/
+  padding-top: 5px;
+  font-size: 20px;
+  line-height: 1.33;
+  border-radius: 25px;
+  background-color: rgb(200, 34, 38);
+}
+
+#plus {
+  color:white;
+}
+
+/*테이블 윗 부분 공간 두기*/
+.col-md-5 {
+  padding-top:70px;
+}
+
+.col-md-7 {
+  padding-top:15px;
+}
