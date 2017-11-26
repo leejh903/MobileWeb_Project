@@ -102,7 +102,7 @@ body {
 
 .sidebar-nav li a:hover {
   text-decoration: none;
-  color: #fff;
+  /*color: #fff;*/
   background: rgba(255, 255, 255, 0.2);
 }
 
@@ -147,6 +147,10 @@ body {
   background: none;
 }
 
+ .sidebar-menu a {
+   font-size: 1.1em;
+ }
+
 @media(max-width:768px) {
   /*모바일 해상도에서 본문 내용 밀리게 설정*/
   #page-content-wrapper {
@@ -158,6 +162,10 @@ body {
   #wrapper.toggled #page-content-wrapper {
     position: absolute;
     margin-right: -250px;
+  }
+
+  .sidebar-menu a {
+    font-size: 1.0em;
   }
 
 }
@@ -198,5 +206,5 @@ body {
   #wrapper.toggled #page-content-wrapper {
     position: relative;
     margin-right: 0;
-  }*/
-}
+  }
+}*/

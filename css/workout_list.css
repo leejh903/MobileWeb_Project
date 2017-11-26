@@ -1,3 +1,7 @@
+/* ****************************** */
+
+/* 캘린더 함수 부분 */
+
 /*#calendar_wrap{
   background: white;
   width: 350px;
@@ -19,8 +23,8 @@ th,td{
 }
 /*th:first-child, td:first-child{ color: red;}*/
 
-#blank p{
-  height : 600px;
+#calendar thead tr td {
+  text-align: left;
 }
 
 
@@ -34,8 +38,16 @@ caption{
   caption-side:top;
 }
 
+/* ****************************** */
+
 .list-group {
   padding: 20px;
+}
+
+.list-group img {
+  width: 50px;
+  height: 50px;
+  margin-right: 50px;
 }
 
 .list-group-item{
@@ -43,15 +55,23 @@ caption{
   border-right-color:white;
 }
 
+.list-group-item:hover {
+  background: #eeeeee;
+  cursor:pointer;
+}
+
+/* ****************************** */
+
+/* 운동 추가 버튼 부분 */
+
 .btn-circle.btn-lg {
   position:absolute;
   right: 30px;
   width: 50px;
   height: 50px;
-  /*padding: 10px 15px;*/
-  padding-top: 5px;
-  font-size: 20px;
-  line-height: 1.33;
+  padding-left: 11px;
+  padding-top: 6px;
+  font-weight: lighter;
   border-radius: 25px;
   background-color: rgb(200, 34, 38);
 }
@@ -60,6 +80,8 @@ caption{
   color:white;
 }
 
+/* ****************************** */
+
 /*테이블 윗 부분 공간 두기*/
 .col-md-5 {
   padding-top:70px;
@@ -67,4 +89,105 @@ caption{
 
 .col-md-7 {
   padding-top:15px;
+}
+
+/* ****************************** */
+
+/*라이트박스 예제에서 가져온 부분*/
+
+/* 라이트박스 컨테이너
+   - #lightbox에 .active 클래스가 있으면 라이트박스 표시(display: block)
+   - .active 클래스가 없으면 표시 안됨
+*/
+
+#lightbox.active{
+  position: absolute; overflow: scroll;
+	background: white;
+	width: 800px; height: 540px;
+	left: 50%; margin-left: -400px;
+	top: 50%; margin-top: -250px;
+	box-sizing: border-box; padding: 5px;
+	z-index: 99; display: block; /* z-index 사용자 쪽으로 줌인 처럼 확대 되게 */
+  padding-top: 10px;
+}
+/*  #lightbox에 .active 클래스가 없으면 라이트박스 표시 안됨 */
+#lightbox{ display: none; }
+
+/* 창닫기 버튼 */
+.btn-close{
+	position: absolute;
+	top: 0px; right: 0px;
+  padding: 5px 10px;
+	color: black; font-size: 2.0em;
+}
+
+/* ****************************** */
+
+/*라이트박스 내용 처리 부분*/
+.add_workout_list_nav > h4 {
+  color:rgb(200, 34, 38); font-weight:bold;
+  font-size: 1.1em;
+}
+
+
+.add_workout_list_nav > li a {
+  color: black;
+}
+
+/* ****************************** */
+
+/* 라이트 박스 배경 처리 */
+#block{
+	display: none;
+}
+
+#block.active{
+  position: fixed;
+	width: 100%; height: 100%;
+	top: 0; bottom: 0; left: 0; right: 0;
+	background: #111;
+	opacity: 0.3; z-index: 9;
+  display: block;
+}
+
+/* nav-tabs 가로 스크롤 지원 */
+.nav-tabs {
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: -webkit-box;
+  display: -moz-box;
+}
+.nav-tabs > li {
+  float: none;
+}
+
+/* ****************************** */
+
+@media(max-width:768px) {
+  #lightbox.active{
+    position: absolute; overflow: hidden;
+  	background: white;
+  	width: 95%; height: auto;
+    left: 50%; margin-left: -48%;
+  	top: 50%; margin-top: -250px;
+  	box-sizing: border-box; padding: 5px;
+  	z-index: 99; display: block;
+    padding-top: 10px;
+  }
+
+  .list-group img {
+    width: 40px;
+    height: 40px;
+    margin-right: 40px;
+  }
+
+
+  /* 컨텐츠 사이 공간 두기 */
+  .col-md-5 {
+    padding-top:10px;
+  }
+
+  .col-md-7 {
+    padding-top:10px;
+  }
 }

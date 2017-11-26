@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/workout_list.css">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="./js/jquery-3.2.1.min.js"></script>
 
 </head>
@@ -28,67 +30,64 @@
 
     <div id="wrapper">
 
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <span>
-                    <img src="./img/user.png" alt="user" id="user" style="weight:45px; height:45px">
-                    </span>
-                    <span>
-                      <a href="#"> 이용자 님 </br></a>
-                      <a href="#" id="weekly_amount"> 이번주 운동량 <strong>##</strong>회 </a>
-                    <span>
-                </li>
-                <li>
-                    <div>
-                    <img src="./img/dashboard.png" alt="dashboard" id="dashboard" style="weight:23px; height:23px">
-                    </div>
-                    <a href="./index.html">대시보드</a>
-                </li>
-                <li>
-                    <div>
-                    <img src="./img/workout_list.png" alt="workout_list" id="workout_list" style="weight:30px; height:30px" >
-                    </div>
-                    <a href="#">운동일지</a>
-                </li>
-                <li>
-                    <div>
-                    <img src="./img/diet.png" alt="diet" id="diet" style="weight:30px; height:30px" >
-                    </div>
-                    <a href="#">식단일지</a>
-                </li>
-                <li>
-                    <div>
-                    <img src="./img/bulletin_board.png" alt="bulletin_board" id="bulletin_board" style="weight:30px; height:30px" >
-                    </div>
-                    <a href="#">게시판</a>
-                </li>
-                <hr/>
-                <li>
-                    <div>
-                    <img src="./img/statistics.png" alt="statistics" id="statistics" style="weight:30px; height:30px" >
-                    </div>
-                    <a href="#">통계</a>
-                </li>
-                <li>
-                    <div>
-                    <img src="./img/setting.png" alt="setting" id="setting" style="weight:30px; height:30px" >
-                    </div>
-                    <a href="#">환경설정</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-
+      <!-- Sidebar -->
+      <div id="sidebar-wrapper">
+          <ul class="sidebar-nav">
+              <li class="sidebar-brand">
+                  <span>
+                  <img src="./img/user.png" alt="user" id="user" style="weight:45px; height:45px">
+                  </span>
+                  <span>
+                    <a href="#"> 이용자 님 </br></a>
+                    <a href="#" id="weekly_amount"> 이번주 운동량 <strong>##</strong>회 </a>
+                  <span>
+              </li>
+              <li class="sidebar-menu">
+                  <div>
+                  <img src="./img/dashboard.png" alt="dashboard" id="dashboard" style="weight:23px; height:23px">
+                  </div>
+                  <a href="./index.html">대시보드</a>
+              </li>
+              <li class="sidebar-menu">
+                  <div>
+                  <img src="./img/workout_list.png" alt="workout_list" id="workout_list" style="weight:30px; height:30px" >
+                  </div>
+                  <a href="./workout_list.html">운동일지</a>
+              </li>
+              <li class="sidebar-menu">
+                  <div>
+                  <img src="./img/diet.png" alt="diet" id="diet" style="weight:30px; height:30px" >
+                  </div>
+                  <a href="#">식단일지</a>
+              </li>
+              <li class="sidebar-menu">
+                  <div>
+                  <img src="./img/bulletin_board.png" alt="bulletin_board" id="bulletin_board" style="weight:30px; height:30px" >
+                  </div>
+                  <a href="#">게시판</a>
+              </li>
+              <hr/>
+              <li class="sidebar-menu">
+                  <div>
+                  <img src="./img/statistics.png" alt="statistics" id="statistics" style="weight:30px; height:30px" >
+                  </div>
+                  <a href="#">통계</a>
+              </li>
+              <li class="sidebar-menu">
+                  <div>
+                  <img src="./img/setting.png" alt="setting" id="setting" style="weight:30px; height:30px" >
+                  </div>
+                  <a href="#">환경설정</a>
+              </li>
+          </ul>
+      </div>
+      <!-- /#sidebar-wrapper -->
 
 
         <!-- 컨텐츠 영역 -->
         <!-- Page Content -->
         <div id="page-content-wrapper">
-            <div id="block"></div>
             <div class="container-fluid">
-
                 <div class="row">
                   <div class="col-md-12" style="text-align: center; letter-spacing:5px">
                     <a href="#navigation-main" id="navigation_mobile" aria-label="Skip to main navigation"> <i class="fa fa-bars" aria-hidden="true"></i></a>
@@ -96,6 +95,7 @@
                 </div>
 
                 <div class="row">
+                <!-- 달력 영역 -->
                 <div class="col-md-5">
                     <div id="calendar_wrap">
                       <div class="table-responsive" style="border:0">
@@ -142,17 +142,15 @@
               </div>
                 <!-- div class="col-md-5"  -->
 
-
+              <!-- 운동 목록 영역 -->
               <div class="col-md-7">
                 <h4 style="color:rgb(200, 34, 38); text-align:center">운동목록</h4>
-                <ul class="list-group">
+                <ul class="list-group" id="day_workoutlist">
                     <a>### % 달성 </a>
-                    <li class="list-group-item">기본 목록 </li>
-                    <li class="list-group-item">기본 목록 2</li>
-                    <li class="list-group-item">기본 목록 3</li>
+                    <li class="list-group-item"><a href="#">기본 목록</a></li>
               </ul>
 
-              <button type="button" class="btn btn-default btn-circle btn-lg"><i id="plus" class="glyphicon glyphicon-plus"></i></button>
+              <button type="button" id="button_add_workout_list" class="btn btn-default btn-circle btn-lg"><i id="plus" class="glyphicon glyphicon-plus"></i></button>
 
               </div>
               <!-- col-md-7 -->
@@ -160,15 +158,110 @@
               </div>
                <!-- row -->
 
-    </div>
-    <!-- /# container-fluid -->
+             </div>
+             <!-- /# container-fluid -->
+
+               <!-- 운동 목록 추가 & 운동 세부 목록 라이트창 열릴 때 배경색 설정 -->
+               <div id="block"></div>
+
       </div>
       <!-- /#page-content-wrapper -->
-</div>
-<!-- /#wrapper -->
 
-        <script src="./js/workout_list.js"></script>
+      <!-- 운동 목록 추가 부분 -->
+      <div id="lightbox">
+        <div class="container-fluid">
+          <ul class="nav nav-tabs add_workout_list_nav" id="list_tab" role="tablist">
+              <h4>운동 목록 추가 &nbsp;&nbsp;</h4>
+              <li class="active"><a href="#streching" aria-controls="streching" role="tab" data-toggle="tab" class="add_workout_list">스트레칭</a></li>
+              <li><a href="#whole_body" aria-controls="whole_body" role="tab" data-toggle="tab" class="add_workout_list">전신 운동</a></li>
+              <li><a href="#lower_body" aria-controls="lower_body" role="tab" data-toggle="tab" class="add_workout_list">하체 운동</a></li>
+              <li><a href="#chest" aria-controls="chest" role="tab" data-toggle="tab" class="add_workout_list">가슴 운동</a></li>
+              <li><a href="#back" aria-controls="back" role="tab" data-toggle="tab" class="add_workout_list">등 운동</a></li>
+              <li><a href="#shoulder" aria-controls="shoulder" role="tab" data-toggle="tab" class="add_workout_list">어깨 운동</a></li>
+          </ul>
+          <!-- nav nav-tabs end -->
 
+          <!-- 컨텐츠 사이 간격두기 -->
+          <div style="background-color: rgb(213, 213, 213); height:3px;"> </div>
+
+          <!-- add_workout_list_contents -->
+          <div class="tab-content" id="tab-content">
+          <div role="tabpanel" class="tab-pane fade in active" id="streching" >
+            <ul class="list-group" id="list-group">
+              <li class="list-group-item"><img src="#" onerror="this.src='img/default_image.png'"/>목 좌우로 굽협다 펴기</li>
+              <li class="list-group-item"><img src="#" onerror="this.src='img/default_image.png'"/>목 앞뒤로 굽협다 펴기</li>
+              <li class="list-group-item"><img src="#" onerror="this.src='img/default_image.png'"/>목 돌리기</li>
+              <li class="list-group-item"><img src="#" onerror="this.src='img/default_image.png'"/>가슴 펴고 오므리기</li>
+              <li class="list-group-item"><img src="#" onerror="this.src='img/default_image.png'"/>어깨 펴고 손등 하늘보기</li>
+              <li class="list-group-item"><img src="#" onerror="this.src='img/default_image.png'"/>어깨 돌리기</li>
+            </ul>
+          </div>
+
+          <div role="tabpanel" class="tab-pane fade" id="whole_body">
+            <ul class="list-group" id="list-group">
+              <li class="list-group-item"><img src="#" onerror="this.src='img/default_image.png'"/>루마니안 데프리프트</li>
+              <li class="list-group-item"><img src="#" onerror="this.src='img/default_image.png'"/>컨벤셔널 데드리프트</li>
+              <li class="list-group-item"><img src="#" onerror="this.src='img/default_image.png'"/>스모 데드리프트</li>
+              <li class="list-group-item"><img src="#" onerror="this.src='img/default_image.png'"/>스티프 데드리프트</li>
+              <li class="list-group-item"><img src="#" onerror="this.src='img/default_image.png'"/>케틀벨 데드리프트</li>
+            </ul>
+          </div>
+
+          <div role="tabpanel" class="tab-pane fade" id="lower_body">
+            <ul class="list-group" id="list-group">
+              <li class="list-group-item"><img src="#" onerror="this.src='img/default_image.png'"/>스플릿 스쿼트</img></li>
+              <li class="list-group-item"><img src="#" onerror="this.src='img/default_image.png'"/>에어 스쿼트</li>
+              <li class="list-group-item"><img src="#" onerror="this.src='img/default_image.png'"/>와이드 스쿼트</li>
+              <li class="list-group-item"><img src="#" onerror="this.src='img/default_image.png'"/>스미스 스쿼트</li>
+              <li class="list-group-item"><img src="#" onerror="this.src='img/default_image.png'"/>백 스쿼트</li>
+            </ul>
+          </div>
+
+          <div role="tabpanel" class="tab-pane fade" id="chest">
+            <ul class="list-group" id="list-group">
+              <li class="list-group-item"><img src="#" onerror="this.src='img/default_image.png'"/>스미스 벤치프레스</img></li>
+              <li class="list-group-item"><img src="#" onerror="this.src='img/default_image.png'"/>닐링푸시업</li>
+              <li class="list-group-item"><img src="#" onerror="this.src='img/default_image.png'"/>덤벨 벤치프레스</li>
+              <li class="list-group-item"><img src="#" onerror="this.src='img/default_image.png'"/>플렛 벤치프레스</li>
+              <li class="list-group-item"><img src="#" onerror="this.src='img/default_image.png'"/>푸시업</li>
+            </ul>
+          </div>
+
+          <div role="tabpanel" class="tab-pane fade" id="back">
+            <ul class="list-group" id="list-group">
+              <li class="list-group-item"><img src="#" onerror="this.src='img/default_image.png'"/>오래매달리기</img></li>
+              <li class="list-group-item"><img src="#" onerror="this.src='img/default_image.png'"/>렛풀다운</li>
+              <li class="list-group-item"><img src="#" onerror="this.src='img/default_image.png'"/>점핑풀업</li>
+              <li class="list-group-item"><img src="#" onerror="this.src='img/default_image.png'"/>뉴트럴그립 턱걸이</li>
+              <li class="list-group-item"><img src="#" onerror="this.src='img/default_image.png'"/>어시스트 친업</li>
+            </ul>
+          </div>
+
+          <div role="tabpanel" class="tab-pane fade" id="shoulder">
+            <ul class="list-group" id="list-group">
+              <li class="list-group-item"><img src="#" onerror="this.src='img/default_image.png'"/>스미스숄더프레스</img></li>
+              <li class="list-group-item"><img src="#" onerror="this.src='img/default_image.png'"/>시티드아놀드프레스</li>
+              <li class="list-group-item"><img src="#" onerror="this.src='img/default_image.png'"/>시티드덤벨숄더프레스</li>
+              <li class="list-group-item"><img src="#" onerror="this.src='img/default_image.png'"/>스탠딩 덤벨숄더프레스</li>
+              <li class="list-group-item"><img src="#" onerror="this.src='img/default_image.png'"/>스탠딩 아놀드프레스</li>
+            </ul>
+          </div>
+
+        </div>
+        <!-- tap contents -->
+
+        <!-- container-fluid end -->
+        <div class="btn-close">
+          <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+        </div>
+
+     </div>
+     <!-- lightbox end -->
+
+     </div>
+     <!-- /#wrapper -->
+
+        <script src="./js/add_workout_list.js"></script>
 
         <!-- Bootstrap core JavaScript -->
         <script src="vendor/jquery/jquery.min.js"></script>
@@ -189,14 +282,13 @@
         $("#navigation_mobile").click(function(e) {
           e.preventDefault();
           $("#wrapper").toggleClass("toggled");
+        });
 
-          // 415px 이하일 때 사이드바 활성화될 떄 배경 흐려지게
-          // 다시 사이드바 버튼을 못 누르는 상황 발생해서 보류
-          // if (window.matchMedia("(max-width: 415px)").matches) {
-          //   if($("#wrapper").hasClass("toggled")){
-          //     $("#block").addClass("active");
-          //   }
-          // }
+        // + 버튼 누르면 라이트박스 등장(운동 추가 부분)
+        $("#button_add_workout_list").click(function(){
+          $('#lightbox').addClass('active');
+          $('#block').addClass('active');
+          $("#wrapper").removeClass("toggled"); // 사이드바 퇴장
         });
 
         // 모바일 해상도에서 메뉴버튼 활성화, 사이드바 없애기
@@ -205,19 +297,26 @@
           $("#navigation_mobile").addClass("active"); // 메뉴 버튼 활성화
         }
 
+        // 768px이상 해상도에서 사이드바 등장
+        if (window.matchMedia("(min-width: 768px)").matches) {
+          // 라이트박스 닫기 할 경우 사이드바 등장
+          $('.btn-close').click(function(){
+            $("#wrapper").addClass("toggled"); // 사이드바 등장
+        });
+      }
+
         // 768px 해상도 변화에 따른 jquery
         var mql = window.matchMedia("screen and (max-width: 768px)");
 
         mql.addListener(function(e) {
-            if(e.matches) {
-                $("#wrapper").removeClass("toggled"); // 사이드바 퇴장
-                $("#navigation_mobile").addClass("active"); // 메뉴 버튼 활성화
-            }
-            else {
-                $("#navigation_mobile").removeClass("active"); // 메뉴 버튼 비활성화
-                $("#wrapper").addClass("toggled"); // 사이드바 등장
-            }
-          });
+        		if(e.matches) {
+        				$("#wrapper").removeClass("toggled"); // 사이드바 퇴장
+        				$("#navigation_mobile").addClass("active"); // 메뉴 버튼 활성화
+        		}
+        		else {
+        				$("#navigation_mobile").removeClass("active"); // 메뉴 버튼 비활성화
+        		}
+        	});
 
         </script>
 

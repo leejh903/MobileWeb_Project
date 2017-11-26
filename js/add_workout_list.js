@@ -1,3 +1,4 @@
+/* ************************************************************ */
 // calendar 함수
 function calendar(new_year, new_month) {
     // 특정 년,월을 시작일(1일)부터 조회(year, month, date(1일부터시작))
@@ -64,3 +65,53 @@ function calendar(new_year, new_month) {
     });
 
 })();  // 메인메소드처럼 (function () ) () 즉시 실행 되게 하는 것
+
+
+
+/* ************************************************************ */
+/* 라이트 박스 부분 */
+$(function(){
+
+	var $lightbox = $('#lightbox');//라이트박스 본체
+	var $block = $('#block');	// 라이트박스 배경
+
+	/* 라이트 박스 열기 */
+	function lightbox_open(num){
+
+		$lightbox.addClass('active');
+
+		$block.addClass('active');
+
+	}
+
+	/* 라이트 박스 종료 */
+	function lightbox_close(){
+
+		$lightbox.removeClass('active');
+
+		$block.removeClass('active');
+	}
+
+
+	// 라이트 박스 닫기 버튼  click 이벤트
+	$(".btn-close").click(function(){
+		lightbox_close();
+	});
+});
+
+/* ************************************************************ */
+/* 클릭 이벤트 발생시 운동목록에 운동 추가 */
+
+	// 필요한 문서객체 저장
+  var $list = $('#list-group > li');
+	var day_list = document.getElementById('day_workoutlist');
+
+	// 리스트 추가
+  $list.click(function(){
+    if(event.target.nodeName == "LI"){
+			var workout_name = $(event.target).text();  // 클릭한 운동 이름 반환
+
+			day_list.innerHTML += '<li class="list-group-item"><a href="#">' + workout_name + '</a></li>'
+
+		}
+  })
