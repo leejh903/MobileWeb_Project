@@ -23,6 +23,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="./js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
 
 </head>
 
@@ -250,13 +251,62 @@
         </div>
         <!-- tap contents -->
 
-        <!-- container-fluid end -->
+
         <div class="btn-close">
           <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
         </div>
 
+      </div>
+        <!-- container-fluid end -->
      </div>
      <!-- lightbox end -->
+
+     <!-- 운동 일지 부분 -->
+     <div id='lightbox2'>
+       <div class="container-fluid">
+         <div class="row">
+           <div class="col-md-6">
+             <!-- 동작 설명 사진 -->
+             <img id="img_motion" src="#" onerror="this.src='img/default_image.png'"/>
+             <!-- 동작 제목 -->
+             <div>
+               <a>루마니안 데드리프트</a></br>
+               <a>Romanian Deadlift</a>
+             </div>
+             <p>루마니안 데프리프트는 무게를 들고 상체를 숙였다가 펴주어 등과 허리, 하체를 강화시켜주는 운동이다. 일반적으로 데프리프트 중에서 가장 많이 구사되는 동작으로 탄력있는 뒷태와 힙업 및 강한 하체를 만드는데 효과적인 운동이다.</p>
+           <!-- col-md-6 end-->
+         </div>
+
+           <div class="col-md-6" id="plan_workout_table">
+             <ul class="list-group">
+               <li class="list-group-item">
+                 <p>set1</p>
+                 <a>0 / 0kg</a>
+                 <a>0 / 0회</a>
+               </li>
+               <li class="list-group-item">
+                 <p>set2</p>
+                 <a>0 / 0kg</a>
+                 <a>0 / 0회</a>
+              </li>
+               <li class="list-group-item">
+                 <p>set3</p>
+                 <a>0 / 0kg</a>
+                 <a>0 / 0회</a>
+              </li>
+             </ul>
+             <span>
+               <button id="add_amount_workout" type="button" class="btn btn-default "><i class="glyphicon glyphicon-plus"></i></button>
+               <button id="minus_amount_workout" type="button" class="btn btn-default"><i class="glyphicon glyphicon-minus"></i></button>
+            </span>
+         </div>
+         <!-- row end -->
+       </div>
+       <!-- container-fluid end -->
+     </div>
+     <!-- lightbox2 end -->
+     </div>
+
 
      </div>
      <!-- /#wrapper -->

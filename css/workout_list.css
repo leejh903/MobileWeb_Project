@@ -34,30 +34,8 @@ th,td{
 }
 
 /*캡션을 테이블 위로 두기*/
-caption{
+caption {
   caption-side:top;
-}
-
-/* ****************************** */
-
-.list-group {
-  padding: 20px;
-}
-
-.list-group img {
-  width: 50px;
-  height: 50px;
-  margin-right: 50px;
-}
-
-.list-group-item{
-  border-left-color:white;
-  border-right-color:white;
-}
-
-.list-group-item:hover {
-  background: #eeeeee;
-  cursor:pointer;
 }
 
 /* ****************************** */
@@ -83,6 +61,7 @@ caption{
 /* ****************************** */
 
 /*테이블 윗 부분 공간 두기*/
+
 .col-md-5 {
   padding-top:70px;
 }
@@ -91,14 +70,20 @@ caption{
   padding-top:15px;
 }
 
+/* 선택된 운동 목록 부분 */
+#day_workoutlist > .list-group-item{
+  border-left-color:white;
+  border-right-color:white;
+}
+
+#day_workoutlist > .list-group-item:hover {
+  background: #eeeeee;
+  cursor:pointer;
+}
+
 /* ****************************** */
 
-/*라이트박스 예제에서 가져온 부분*/
-
-/* 라이트박스 컨테이너
-   - #lightbox에 .active 클래스가 있으면 라이트박스 표시(display: block)
-   - .active 클래스가 없으면 표시 안됨
-*/
+/* 라이트박스1(동작추가) 부분 */
 
 #lightbox.active{
   position: absolute; overflow: scroll;
@@ -107,7 +92,7 @@ caption{
 	left: 50%; margin-left: -400px;
 	top: 50%; margin-top: -250px;
 	box-sizing: border-box; padding: 5px;
-	z-index: 99; display: block; /* z-index 사용자 쪽으로 줌인 처럼 확대 되게 */
+	z-index: 99; display: block;
   padding-top: 10px;
 }
 /*  #lightbox에 .active 클래스가 없으면 라이트박스 표시 안됨 */
@@ -119,6 +104,113 @@ caption{
 	top: 0px; right: 0px;
   padding: 5px 10px;
 	color: black; font-size: 2.0em;
+}
+
+/* 운동 컨텐츠 부분 */
+#tab-content > .tab-pane > .list-group {
+  padding: 20px;
+}
+
+#tab-content > .tab-pane > .list-group img {
+  width: 50px;
+  height: 50px;
+  margin-right: 50px;
+}
+
+#tab-content > .tab-pane > ul > .list-group-item{
+  border-left-color:white;
+  border-right-color:white;
+}
+
+#tab-content > .tab-pane > ul > .list-group-item:hover {
+  background: #eeeeee;
+  cursor:pointer;
+}
+
+/* ****************************** */
+
+/* 라이트박스2(운동일지) 부분 */
+
+#lightbox2 > .container-fluid > .row > .col-md-6 {
+  padding : 10px;
+  padding-right : 0px;
+  padding-top : 20px;
+}
+
+#lightbox2 > .container-fluid > .row > .col-md-6 > div {
+  background-color: rgb(240, 241, 242);
+  height: 60px;
+  padding: 10px;
+  margin-top: 10px;
+  padding-left: 20px;
+  margin-bottom: 1.2em;
+}
+
+#lightbox2 > .container-fluid > .row > .col-md-6 > div > a:first-child {
+  font-size: 1.3em;
+}
+
+#lightbox2 > .container-fluid > .row > .col-md-6 > div > a:last-child {
+  color : rgb(160, 160, 160);
+}
+
+#lightbox2 > .container-fluid > .row > .col-md-6 > p {
+  font-size: 1.1em;
+  padding : 0 4px;
+  color : rgb(140, 140, 140);
+  font-weight: lighter;
+}
+
+#img_motion {
+  width: 90%;
+  height: auto;
+  padding-left: 70px;
+  padding-bottom : 20px;
+}
+
+#lightbox2 {
+  position: absolute; overflow: scroll;
+  background: white;
+  width: 800px; height: 540px;
+  left: 50%; margin-left: -400px;
+  top: 50%; margin-top: -250px;
+  box-sizing: border-box; padding: 5px;
+  z-index: 99; display: block;
+  padding-top: 10px;
+}
+
+#plan_workout_table > .list-group > li{
+  border-left-color:white;
+  border-right-color:white;
+  padding : 5px;
+  height : 90px;
+  font-size: 1.3em;
+}
+
+#plan_workout_table > .list-group > li > p {
+  font-size: 1.0em;
+  /*font-weight: bolder;*/
+}
+
+#plan_workout_table > .list-group > li > a {
+  float: right;
+  padding-right: 2.5em;
+  font-size: 1.1em;
+  color: rgb(200, 34, 38);
+}
+
+#plan_workout_table > span {
+  float: right;
+  padding-right: 1.2em;
+}
+
+#plan_workout_table > span > button {
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  padding-left: 11px;
+  padding-top: 6px;
+  font-weight: normal;
 }
 
 /* ****************************** */
@@ -150,17 +242,6 @@ caption{
   display: block;
 }
 
-/* nav-tabs 가로 스크롤 지원 */
-.nav-tabs {
-  overflow-x: auto;
-  overflow-y: hidden;
-  display: -webkit-box;
-  display: -moz-box;
-}
-.nav-tabs > li {
-  float: none;
-}
-
 /* ****************************** */
 
 @media(max-width:768px) {
@@ -179,6 +260,17 @@ caption{
     width: 40px;
     height: 40px;
     margin-right: 40px;
+  }
+
+  /* nav-tabs 가로 스크롤 지원 */
+  .nav-tabs {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    display: -webkit-box;
+    display: -moz-box;
+  }
+  .nav-tabs > li {
+    float: none;
   }
 
 
