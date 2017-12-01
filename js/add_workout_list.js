@@ -101,10 +101,32 @@ $(function(){
 
 /* ************************************************************ */
 
+/* 클릭 이벤트 발생시 운동 세트 추가 */
 
+// 필요한 문서객체 저장
+var $set_plus = $('#add_amount_workout');
+var $set_minus = $('#minus_amount_workout');
+var set_list = document.getElementById('plan_workout_ul');
+var set_index = $(plan_workout_ul).find('li').length;
 
+// 세트 추가
+$set_plus.click(function(){
+  if(event.target.nodeName = "I"){
+  set_index++;
+  console.log(set_index);
+  set_list.innerHTML += '<li class="list-group-item"><p>set' + set_index + '</p><a>0 / 0kg</a><a>0 / 0회</a></li>'
+  }
+})
 
+// 세트 제거
+$set_minus.click(function(){
+  if(set_index > 3){ // 3개 세트는 고정
+    set_index--;
+    console.log(set_index);
+    set_list.removeChild(set_list.lastChild);
 
+    }
+})
 /* ************************************************************ */
 /* 클릭 이벤트 발생시 운동목록에 운동 추가 */
 
