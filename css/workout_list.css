@@ -161,6 +161,11 @@ caption {
   font-weight: lighter;
 }
 
+#plan_workout_ul > .list-group-item:hover {
+  background: #eeeeee;
+  cursor:pointer;
+}
+
 #img_motion {
   width: 90%;
   height: auto;
@@ -215,12 +220,82 @@ caption {
 
 /* ****************************** */
 
+/* 모달 부분 */
+
+/* modal-header */
+.modal-dialog {
+  width: 80%;
+  height: 80%
+  margin: 0;
+  padding: 0;
+}
+
+.modal-content {
+  height: auto;
+  min-height: 80%
+}
+
+.modal-header {
+  padding: 13px;
+  padding-left: 20px;
+}
+
+.modal-header > .close {
+  padding-top: 3px;
+}
+
+.modal.modal-center {
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .modal.modal-center:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
+.modal-dialog.modal-center {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+/* modal_content */
+
+.form-group {
+  margin-right: 25px;
+}
+
+.form-group > .form-control {
+  width: 120px;
+  margin-right: 5px;
+}
+
+.form-inline {
+  padding-left: 40px;
+}
+
+.form-group > label {
+  float:right;
+  font-size: 1.3em;
+  font-weight: normal;
+  margin-top: 6px;
+}
+
+.form-group > button {
+  font-size: 1.2em;
+}
+
+/* ****************************** */
+
 /*라이트박스 내용 처리 부분*/
 .add_workout_list_nav > h4 {
   color:rgb(200, 34, 38); font-weight:bold;
   font-size: 1.1em;
 }
-
 
 .add_workout_list_nav > li a {
   color: black;

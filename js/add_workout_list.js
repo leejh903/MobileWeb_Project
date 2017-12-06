@@ -44,6 +44,7 @@ function calendar(new_year, new_month) {
      - 프로그램 시작과 함께 자동 호출되며, 즉시실행함수내에서 선언한 변수를 외부에서 접근 가능함
      - 선언방법 : 함수의 바깥쪽을 괄호로 감싸고, 뒤에 ()를 추가
   */
+
 (function () {
     var $prev = $('#prev');//이전
     var $next = $('#next');//이후
@@ -69,6 +70,7 @@ function calendar(new_year, new_month) {
 
 
 /* ************************************************************ */
+
 /* 라이트 박스 부분 */
 $(function(){
 
@@ -114,7 +116,7 @@ $set_plus.click(function(){
   if(event.target.nodeName = "I"){
   set_index++;
   console.log(set_index);
-  set_list.innerHTML += '<li class="list-group-item"><p>set' + set_index + '</p><a>0 / 0kg</a><a>0 / 0회</a></li>'
+  set_list.innerHTML += '<li class="list-group-item"><p>set' + set_index + '</p><a> 0 kg </a><a> 0 회 </a></li>'
   }
 })
 
@@ -127,7 +129,9 @@ $set_minus.click(function(){
 
     }
 })
+
 /* ************************************************************ */
+
 /* 클릭 이벤트 발생시 운동목록에 운동 추가 */
 
 	// 필요한 문서객체 저장
@@ -142,4 +146,20 @@ $set_minus.click(function(){
 			day_list.innerHTML += '<li class="list-group-item"><a href="#">' + workout_name + '</a></li>'
 
 		}
+  })
+
+/* ************************************************************ */
+
+/* lightbox2 */
+
+
+/* ************************************************************ */
+
+/* 기록 입력 모달 */
+
+  // 필요한 문서객체 저장
+  var $setting_list = $('#plan_workout_ul > li');
+
+  $setting_list.click(function() {
+    $('#goal_Modal').modal('show');
   })

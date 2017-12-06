@@ -47,7 +47,7 @@
                   <div>
                   <img src="./img/dashboard.png" alt="dashboard" id="dashboard" style="weight:23px; height:23px">
                   </div>
-                  <a href="./index.html">대시보드</a>
+                  <a href="./dashboard.html">대시보드</a>
               </li>
               <li class="sidebar-menu">
                   <div>
@@ -61,6 +61,7 @@
                   </div>
                   <a href="#">식단일지</a>
               </li>
+              <!-- 제안서 수정을 통해 반영 -->
               <!-- <li class="sidebar-menu">
                   <div>
                   <img src="./img/bulletin_board.png" alt="bulletin_board" id="bulletin_board" style="weight:30px; height:30px" >
@@ -281,18 +282,18 @@
              <ul class="list-group" id="plan_workout_ul">
                <li class="list-group-item">
                  <p>set1</p>
-                 <a>0 / 0kg</a>
-                 <a>0 / 0회</a>
+                 <a> 0 kg </a>
+                 <a> 0 회 </a>
                </li>
                <li class="list-group-item">
                  <p>set2</p>
-                 <a>0 / 0kg</a>
-                 <a>0 / 0회</a>
+                 <a> 0 kg </a>
+                 <a> 0 회 </a>
               </li>
                <li class="list-group-item">
                  <p>set3</p>
-                 <a>0 / 0kg</a>
-                 <a>0 / 0회</a>
+                 <a> 0 kg </a>
+                 <a> 0 회 </a>
               </li>
              </ul>
              <span>
@@ -306,6 +307,42 @@
      </div>
      <!-- lightbox2 end -->
      </div>
+
+     <div class="container">
+     <!-- Modal 윈도우 선언-->
+        <div class="modal modal-center fade" id="goal_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <!-- 모달 다이얼로그 -->
+            <div class="modal-dialog modal-center">
+                <!-- 모달 콘텐츠 -->
+                <div class="modal-content">
+                    <!-- modal-header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel" style="font-weight: bold">기록 입력</h4>
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    </div>
+                    <!-- modal-body -->
+                    <div class="modal-body">
+                      <form role="form" class="form-inline">
+                          <div class="form-group">
+                              <input type="number" class="form-control">
+                              <label for="set_number">회</label>
+                          </div>
+                          <div class="form-group">
+                              <input type="number" class="form-control">
+                              <label for="kg_number">kg</label>
+                          </div>
+                          <div class="form-group">
+                              <button type="submit">확인</button>
+                          </div>
+                      </form>
+                    </div>
+                </div>
+                <!-- 모달 콘텐츠 -->
+            </div>
+            <!-- 모달 다이얼로그 -->
+        </div>
+        <!-- 모달 전체 윈도우 -->
+      </div>
 
 
      </div>
