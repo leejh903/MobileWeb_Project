@@ -1,0 +1,171 @@
+#calendar thead tr td {
+  text-align: left;
+}
+
+
+#prev, #next{
+  display: inline-block;
+  text-decoration: none;;
+}
+
+/*캡션을 테이블 위로 두기*/
+caption {
+  caption-side:top;
+}
+
+/* ****************************** */
+
+/* 운동 추가 버튼 부분 */
+
+.btn-group {
+  float: right;
+  margin-right: 5%;
+}
+
+#add_dietlist_btn {
+  position:absolute;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  padding-left: 11px;
+  padding-top: 6px;
+  font-weight: lighter;
+  border-radius: 25px;
+  background-color: rgb(200, 34, 38);
+  border-color: rgb(200, 34, 38);
+}
+
+#plus {
+  color:white;
+}
+
+.dropdown-menu {
+  min-width: 120px;
+}
+
+.dropdown-menu > li{
+  font-size: 1.3em;
+}
+
+/* ****************************** */
+
+/*테이블 윗 부분 공간 두기*/
+
+.col-md-5 {
+  padding-top:70px;
+}
+
+.col-md-7 {
+  padding-top:15px;
+}
+
+/* 선택된 운동 목록 부분 */
+#day_workoutlist > .list-group-item{
+  border-left-color:white;
+  border-right-color:white;
+}
+
+#day_workoutlist > .list-group-item:hover {
+  background: #eeeeee;
+  cursor:pointer;
+}
+
+/* ****************************** */
+
+@media(max-width:768px) {
+  .dropdown-menu > li{
+    font-size: 1.1em;
+  }
+}
+
+/* ****************************** */
+/* 모달 부분 */
+
+/* modal-header */
+.modal-dialog {
+  width: 80%;
+  height: 80%
+  margin: 0;
+  padding: 0;
+}
+
+.modal-content {
+  height: 300px;
+  min-height: 80%
+}
+
+.modal-header {
+  padding: 13px;
+  padding-left: 20px;
+}
+
+.modal-header > .close {
+  padding-top: 3px;
+}
+
+.modal.modal-center {
+  text-align: center;
+}
+
+.modal-body > .form-inline > .form-group:first-child {
+  width: 100%;
+}
+
+.modal-body > .form-inline > .form-group:first-child > textarea {
+  margin-left: 3px;
+  width : 100%;
+  height : 170px;
+}
+
+.modal-body > .form-inline > .form-group:last-child {
+  margin-left: 90%;
+  margin-top: 2%;
+}
+
+.modal-body > .form-inline > .form-group:last-child > button {
+  font-size: 1.3em;
+}
+
+@media(max-width:768px) {
+  .modal-dialog {
+    position: absolute;
+    width: 80%;
+    left: 10%;
+    top: 190px;
+    margin-top: 50px;
+    padding: 0;
+  }
+
+  .modal-body > .form-inline > .form-group:last-child {
+    margin-left: 82%;
+    margin-top: 2%;
+  }
+
+  .modal-body > .form-inline > .form-group:last-child > button {
+    font-size: 1.0em;
+  }
+
+  #myModalLabel {
+    font-size: 1.05em;
+  }
+
+  .panel-title {
+    font-size: 1.0em;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .modal.modal-center:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+
+}
+
+.modal-dialog.modal-center {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}

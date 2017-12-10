@@ -42,7 +42,7 @@ caption {
 
 /* 운동 추가 버튼 부분 */
 
-.btn-circle.btn-lg {
+#button_add_workout_list {
   position:absolute;
   right: 30px;
   width: 50px;

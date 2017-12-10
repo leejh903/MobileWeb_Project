@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>My Workout Diary</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/kfonts2.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/diet_list.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="./js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <div id="sidebar-wrapper">
+          <ul class="sidebar-nav">
+              <li class="sidebar-brand">
+                  <span>
+                  <img src="./img/user.png" alt="user" id="user" style="weight:45px; height:45px">
+                  </span>
+                  <span>
+                    <a href="#"> 이용자 님 </br></a>
+                    <a href="#" id="weekly_amount"> 이번주 운동량 <strong>##</strong>회 </a>
+                  <span>
+              </li>
+              <li class="sidebar-menu">
+                  <div>
+                  <img src="./img/dashboard.png" alt="dashboard" id="dashboard" style="weight:23px; height:23px">
+                  </div>
+                  <a href="./dashboard.html">대시보드</a>
+              </li>
+              <li class="sidebar-menu">
+                  <div>
+                  <img src="./img/workout_list.png" alt="workout_list" id="workout_list" style="weight:30px; height:30px" >
+                  </div>
+                  <a href="./workout_list.html">운동일지</a>
+              </li>
+              <li class="sidebar-menu">
+                  <div>
+                  <img src="./img/diet.png" alt="diet" id="diet" style="weight:30px; height:30px" >
+                  </div>
+                  <a href="./diet_list.html">식단일지</a>
+              </li>
+              <!-- 제안서 수정을 통해 반영 -->
+              <!-- <li class="sidebar-menu">
+                  <div>
+                  <img src="./img/bulletin_board.png" alt="bulletin_board" id="bulletin_board" style="weight:30px; height:30px" >
+                  </div>
+                  <a href="#">게시판</a>
+              </li> -->
+              <hr/>
+              <!-- <li class="sidebar-menu">
+                  <div>
+                  <img src="./img/statistics.png" alt="statistics" id="statistics" style="weight:30px; height:30px" >
+                  </div>
+                  <a href="#">통계</a>
+              </li> -->
+              <li class="sidebar-menu">
+                  <div>
+                  <img src="./img/setting.png" alt="setting" id="setting" style="weight:30px; height:30px" >
+                  </div>
+                  <a href="#">환경설정</a>
+              </li>
+          </ul>
+      </div>
+      <!-- /#sidebar-wrapper -->
+
+
+        <!-- 컨텐츠 영역 -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-12" style="text-align: center; letter-spacing:5px">
+                    <a href="#navigation-main" id="navigation_mobile" aria-label="Skip to main navigation"> <i class="fa fa-bars" aria-hidden="true"></i></a>
+                  </div>
+                </div>
+
+                <div class="row">
+                <!-- 달력 영역 -->
+                <div class="col-md-5">
+                    <div id="calendar_wrap">
+                      <div class="table-responsive" style="border:0">
+                        <table class="table">
+                          <caption id="caption" style="text-align:center">
+                            <a href="#" id="prev">prev &lt;&nbsp;&nbsp;&nbsp;</a>
+                            <span class="year"></span>년
+                            <span class="month"></span>월
+                            <a href="#" id="next">&nbsp;&nbsp;&nbsp;&gt; next</a>
+                          </caption>
+                          <thead>
+                          <tr>
+                            <th>일</th><th>월</th><th>화</th><th>수</th>
+                            <th>목</th><th>금</th><th>토</th>
+                          </tr>
+                        </thead>
+                          <tr>
+                            <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                            <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                          </tr>
+                          <tr>
+                            <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                            <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                          </tr>
+                          <tr>
+                            <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                            <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                          </tr>
+                          <tr>
+                            <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                            <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                          </tr>
+                          <tr>
+                            <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                            <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                          </tr>
+                          <tr>
+                            <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                            <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                          </tr>
+                        </table>
+                    </div>
+                </div>
+              </div>
+                <!-- div class="col-md-5"  -->
+
+              <!-- 운동 목록 영역 -->
+              <div class="col-md-7">
+                <h4 style="color:rgb(200, 34, 38); text-align:center">식단기록</h4>
+              </br>
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne"> 아침 </a> </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">아침내용 </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                    <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"> 점심 </a> </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body"> 점심내용 </div>
+                </div>
+              </div>
+            </div>
+
+              <div class="btn-group">
+              <button type="button" id="add_dietlist_btn" class="btn btn-default btn-circle btn-lg btn-primary dropdown-toggle" data-toggle="dropdown"><i id="plus" class="glyphicon glyphicon-plus"> <span class="caret"></span></i></button>
+                     <!-- <button type="button" class="btn btn-default btn-primary dropdown-toggle" data-toggle="dropdown"> 클릭   <span class="caret"></span> -->
+                    </button>
+                  <ul class="dropdown-menu" role="menu">
+                   <li><a href="#">아침</a></li>
+                   <li><a href="#">점심</a></li>
+                   <li><a href="#">저녁</a></li>
+                   <li><a href="#">간식</a></li>
+                 </ul>
+               </div>
+
+              </div>
+              <!-- col-md-7 -->
+
+              </div>
+               <!-- row -->
+
+               <div class="container">
+               <!-- Modal 윈도우 선언-->
+                  <div class="modal modal-center fade" id="diet_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <!-- 모달 다이얼로그 -->
+                      <div class="modal-dialog modal-center">
+                          <!-- 모달 콘텐츠 -->
+                          <div class="modal-content">
+                              <!-- modal-header -->
+                              <div class="modal-header">
+                                  <h4 class="modal-title" id="myModalLabel" style="font-weight: bold">식단 입력</h4>
+                                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                              </div>
+                              <!-- modal-body -->
+                              <div class="modal-body">
+                                <form role="form" class="form-inline">
+                                    <div class="form-group">
+                                        <textarea type="text" class="form-control"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit">확인</button>
+                                    </div>
+                                </form>
+                              </div>
+                          </div>
+                          <!-- 모달 콘텐츠 -->
+                      </div>
+                      <!-- 모달 다이얼로그 -->
+                  </div>
+                  <!-- 모달 전체 윈도우 -->
+                </div>
+
+
+             </div>
+             <!-- /# container-fluid -->
+
+      </div>
+      <!-- /#page-content-wrapper -->
+
+
+     </div>
+     <!-- /#wrapper -->
+
+        <script src="./js/diet_list.js"></script>
+
+        <!-- Bootstrap core JavaScript -->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Menu Toggle Script -->
+        <script>
+        // Toggle Menu 누를 때 왼쪽 사이드바 등장
+        // $("#menu-toggle").click(function(e) {
+        //     e.preventDefault();
+        //     $("#wrapper").toggleClass("toggled");
+        // });
+
+        // 토글 항시 활성화
+        $("#wrapper").addClass("toggled");
+
+        // 메뉴 버튼 누를 때 사이드바 토글 활성화
+        $("#navigation_mobile").click(function(e) {
+          e.preventDefault();
+          $("#wrapper").toggleClass("toggled");
+        });
+
+        // + 버튼 누르면 라이트박스 등장(운동 추가 부분)
+        $("#button_add_workout_list").click(function(){
+          $('#lightbox').addClass('active');
+          $('#block').addClass('active');
+          $("#wrapper").removeClass("toggled"); // 사이드바 퇴장
+        });
+
+        // 모바일 해상도에서 메뉴버튼 활성화, 사이드바 없애기
+        if (window.matchMedia("(max-width: 768px)").matches) {
+          $("#wrapper").removeClass("toggled"); // 사이드바 퇴장
+          $("#navigation_mobile").addClass("active"); // 메뉴 버튼 활성화
+        }
+
+        // 768px이상 해상도에서 사이드바 등장
+        if (window.matchMedia("(min-width: 768px)").matches) {
+          // 라이트박스 닫기 할 경우 사이드바 등장
+          $('.btn-close').click(function(){
+            $("#wrapper").addClass("toggled"); // 사이드바 등장
+        });
+      }
+
+        // 768px 해상도 변화에 따른 jquery
+        var mql = window.matchMedia("screen and (max-width: 768px)");
+
+        mql.addListener(function(e) {
+        		if(e.matches) {
+        				$("#wrapper").removeClass("toggled"); // 사이드바 퇴장
+        				$("#navigation_mobile").addClass("active"); // 메뉴 버튼 활성화
+        		}
+        		else {
+        				$("#navigation_mobile").removeClass("active"); // 메뉴 버튼 비활성화
+        		}
+        	});
+
+        </script>
+
+    </body>
+
+    </html>

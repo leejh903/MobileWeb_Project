@@ -1,4 +1,4 @@
-//서버의 각 기능을 모듈로 분리하고, 메인(index.js)에서 불러오도록 구현
+
 
 // Express 기본 모듈 불러오기
 var express = require('express')
@@ -17,6 +17,10 @@ var expressErrorHandler = require('express-error-handler');
 // Session 미들웨어 불러오기
 var expressSession = require('express-session');
 
+//===== Passport 사용 =====//
+var passport = require('passport');
+var flash = require('connect-flash');
+
 // 모듈로 분리한 설정 파일 불러오기
 var config = require('./config/config');
 
@@ -29,10 +33,14 @@ var route_loader = require('./routes/route_loader');
 // 익스프레스 객체 생성
 var app = express();
 
+//===== 뷰 엔진 설정 =====//
+app.set('views', __dirname + '/views');//뷰 템플릿 폴더 지정
+app.set('view engine', 'ejs');//뷰 엔진으로 ejs 사용 지정
+console.log('뷰 엔진이 ejs로 설정되었습니다.');
+
 //===== 서버 변수 설정 및 static으로 public 폴더 설정  =====//
 console.log('config.server_port : %d', config.server_port);
 app.set('port', process.env.PORT || 3000);
-//app.set('port', config.server_port || 3000);
 
 // body-parser를 이용해 application/x-www-form-urlencoded 파싱
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -40,7 +48,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // public 폴더를 static으로 오픈
-app.use('/public', static(path.join(__dirname, 'public')));
+app.use('/public', static(path.join (__dirname, 'public')));
+app.use(express.static(path.join (__dirname, 'public')));
 
 // cookie-parser 설정
 app.use(cookieParser());
@@ -51,6 +60,12 @@ app.use(expressSession({
 	resave:true,
 	saveUninitialized:true
 }));
+
+//===== Passport 사용 설정 =====//
+// Passport의 세션을 사용할 때는 그 전에 Express의 세션을 사용하는 코드가 있어야 함
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
 // 라우팅 정보를 읽어들여 라우팅 설정
 route_loader.init(app, express.Router());
@@ -66,6 +81,14 @@ app.use( expressErrorHandler.httpError(404) );
 app.use( errorHandler );
 
 //===== 서버 시작 =====//
+
+//확인되지 않은 예외 처리 - 서버 프로세스 종료하지 않고 유지함
+process.on('uncaughtException', function (err) {
+	console.log('uncaughtException 발생함 : ' + err);
+	console.log('서버 프로세스 종료하지 않고 유지함.');
+
+	console.log(err.stack);
+});
 
 // 프로세스 종료 시에 데이터베이스 연결 해제
 process.on('SIGTERM', function () {
