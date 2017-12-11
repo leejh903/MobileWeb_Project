@@ -13,13 +13,14 @@ Schema.createSchema = function(mongoose) {
 	console.log('createSchema 호출')
 
 	// 스키마 정의
+	// 이메일 인증 가능하게 수정
 	var UserSchema = mongoose.Schema({
-	    id: {type: String, required: true, unique: true, 'default':''},//아이디
-      name: {type: String, index: 'hashed', 'default':''},//이름
-	    hashed_password: {type: String, required: true, 'default':''},//암호화된 비밀번호
-	    salt: {type:String, required:true},//암호화에 사용되는 salt값(암호화 키값)
-	    created_at: {type: Date, index: {unique: false}, 'default': Date.now},//작성일
-	    updated_at: {type: Date, index: {unique: false}, 'default': Date.now}//수정일
+	    email : {type : String, 'default' : ''}
+			, hashed_password : {type : String, required : true, 'default' : ''}
+			, name : {type : String, index : 'hashed', 'default' : ''}
+			, salt : {type : String, required : true}
+			, created_at : {type : Date, index : {unique : false}, 'default' : Date.now}
+			, updated_at : {type : Date, index : {unique : false}, 'default' : Date.now}
 	});
 
 	/*  password를 virtual 메소드(가상 속성)로 정의
@@ -77,22 +78,19 @@ Schema.createSchema = function(mongoose) {
 		}
 	})
 
-	// 필수 속성에 대한 유효성 확인 (길이값 체크)
-	UserSchema.path('id').validate(function (id) {
-		return id.length;
-	}, 'id 칼럼의 값이 없습니다.');
-
-	UserSchema.path('name').validate(function (name) {
-		return name.length;
-	}, 'name 칼럼의 값이 없습니다.');
+	// 입력된 칼럼의 값이 있는지 확인
+	UserSchema.path('email').validate(function (email) {
+		return email.length;
+	}, 'email 칼럼의 값이 없습니다.');
 
 	UserSchema.path('hashed_password').validate(function (hashed_password) {
 		return hashed_password.length;
 	}, 'hashed_password 칼럼의 값이 없습니다.');
 
-	// 스키마에 static 메소드 추가
-	UserSchema.static('findById', function(id, callback) {
-		return this.find({id:id}, callback);
+
+	// 모델 객체에서 사용할 수 있는 메소드 정의
+	UserSchema.static('findByEmail', function(email, callback) {
+		return this.find({email:email}, callback);
 	});
 
 	UserSchema.static('findAll', function(callback) {

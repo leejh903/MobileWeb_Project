@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>회원가입 - My Workout Diary</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
+    <!-- Custom style -->
+    <link rel="stylesheet" href="/css/style.css" media="screen" title="no title" charset="utf-8">
+
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+		<style>
+
+			body {
+				background-color: #f8f8f8;
+				font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+			}
+
+			.adduser-title {
+				font-weight: 700;
+				font-size: 1.35em;
+				text-transform: uppercase;
+				color: rgb(200, 34, 38);
+				font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; }
+			}
+
+		</style>
+  </head>
+
+  <body>
+      <article class="container" style="margin-top: 130px; background-color: white; width: 630px; padding: 0 20px;">
+        <div class="page-header" style="margin-top: 20px;">
+          <div class="adduser-title">My Workout Diary</div>
+					<h4 style="font-weight: bold">회원가입</h4>
+        </div>
+
+        <!-- 인증 처리 후 메시지가 있으면 메시지 표시 -->
+		    <% if (message.length > 0) { %>
+		        <div class="alert alert-danger"><%= message %></div>
+		    <% } %>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
+          <form role="form" method="post" action="/signup">
+            <div class="form-group">
+              <label for="InputEmail">이메일 주소</label>
+              <input type="email" class="form-control" id="InputEmail" name="email" placeholder="이메일 주소">
+            </div>
+            <div class="form-group">
+              <label for="InputPassword1">비밀번호</label>
+              <input type="password" class="form-control" id="InputPassword1" placeholder="비밀번호">
+            </div>
+            <div class="form-group">
+              <label for="InputPassword2">비밀번호 확인</label>
+              <input type="password" class="form-control" id="InputPassword2" name="password" placeholder="비밀번호 확인">
+              <p class="help-block">비밀번호 확인을 위해 다시한번 입력 해 주세요</p>
+            </div>
+            <div class="form-group">
+              <label for="username">이름</label>
+              <input type="text" class="form-control" id="username" name="name" placeholder="이름을 입력해 주세요">
+            </div>
+            <div class="form-group text-center">
+              <button type="submit" class="btn btn-info" style="background-color: rgb(200, 34, 38)">회원가입</button>
+              <button type="submit" class="btn btn-warning" style="background-color: #c2c2c2; border-color: white"><a href="/">가입취소</a></button>
+            </div>
+          </form>
+        </div>
+      </article>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

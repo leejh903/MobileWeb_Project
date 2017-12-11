@@ -1,113 +1,48 @@
+/* index.html(메인 프로그램)
+- 파일 구조를 전형적인 MVC 패턴에 맞춤
+*/
+
+// 필요 모듈 참조
+const express = require('express');
+const mongoose = require('mongoose');
+const fs = require('fs');
+
+/* 모델 일괄 등록을 위한 모듈 */
+const join = require('path').join;//파일 경로 조인
+const models = join(__dirname, 'app/models');// 'app/models' 경로 설정
+
+/* 익스프레스 객체 생성 */
+const app = express();
+
+/* 몽고디비연결 포트 번호 설정 */
+const port = 3000;
+
+/* 몽고디비연결
+    MONGO_URI=mongodb://localhost:27017/<db-name>
+*/
+mongoose.connect('mongodb://localhost:27017/memberDB');
+
+console.log('call : index.js');
 
 
-// Express 기본 모듈 불러오기
-var express = require('express')
-  , http = require('http')
-  , path = require('path');
+/* models 폴더에 있는 모든 파일을  일괄등록(require) 처리*/
+// filter() 메서드 : 조건에 만족하는 요소만 뽑아 새로운 배열 생성
+fs.readdirSync(models)
+  //.filter(file => ~file.search(/^[^\.].*\.js$/))//정규식 패턴에 일치하는 문자열을 찾아 반환
+  // => : allow function
+  .filter(file => ~file.indexOf('.js'))//".js"을포함하는 파일을 찾으면 truly 값 반환
+  .forEach(file => require(join(models, file)));
+/* 간편하게 사용법
+   - require('./app/models/student');
+   - require('./app/models/uploads');
+*/
 
-// Express의 미들웨어 불러오기
-var bodyParser = require('body-parser')
-  , cookieParser = require('cookie-parser')
-  , static = require('serve-static')
-  , errorHandler = require('errorhandler');
+/* config 폴더에 있는 express와 routes 설정파일 적용 */
+require('./config/express')(app);
+require('./config/routes')(app);
 
-// 에러 핸들러 모듈 사용
-var expressErrorHandler = require('express-error-handler');
 
-// Session 미들웨어 불러오기
-var expressSession = require('express-session');
-
-//===== Passport 사용 =====//
-var passport = require('passport');
-var flash = require('connect-flash');
-
-// 모듈로 분리한 설정 파일 불러오기
-var config = require('./config/config');
-
-// 모듈로 분리한 데이터베이스 파일 불러오기
-var database = require('./database/database');
-
-// 모듈로 분리한 라우팅 파일 불러오기
-var route_loader = require('./routes/route_loader');
-
-// 익스프레스 객체 생성
-var app = express();
-
-//===== 뷰 엔진 설정 =====//
-app.set('views', __dirname + '/views');//뷰 템플릿 폴더 지정
-app.set('view engine', 'ejs');//뷰 엔진으로 ejs 사용 지정
-console.log('뷰 엔진이 ejs로 설정되었습니다.');
-
-//===== 서버 변수 설정 및 static으로 public 폴더 설정  =====//
-console.log('config.server_port : %d', config.server_port);
-app.set('port', process.env.PORT || 3000);
-
-// body-parser를 이용해 application/x-www-form-urlencoded 파싱
-app.use(bodyParser.urlencoded({ extended: false }));
-// body-parser를 이용해 application/json 파싱
-app.use(bodyParser.json());
-
-// public 폴더를 static으로 오픈
-app.use('/public', static(path.join (__dirname, 'public')));
-app.use(express.static(path.join (__dirname, 'public')));
-
-// cookie-parser 설정
-app.use(cookieParser());
-
-// 세션 설정
-app.use(expressSession({
-	secret:'my key',
-	resave:true,
-	saveUninitialized:true
-}));
-
-//===== Passport 사용 설정 =====//
-// Passport의 세션을 사용할 때는 그 전에 Express의 세션을 사용하는 코드가 있어야 함
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(flash());
-
-// 라우팅 정보를 읽어들여 라우팅 설정
-route_loader.init(app, express.Router());
-
-// 404 에러 페이지 처리
-var errorHandler = expressErrorHandler({
- static: {
-   '404': './public/404.html'
- }
-});
-
-app.use( expressErrorHandler.httpError(404) );
-app.use( errorHandler );
-
-//===== 서버 시작 =====//
-
-//확인되지 않은 예외 처리 - 서버 프로세스 종료하지 않고 유지함
-process.on('uncaughtException', function (err) {
-	console.log('uncaughtException 발생함 : ' + err);
-	console.log('서버 프로세스 종료하지 않고 유지함.');
-
-	console.log(err.stack);
-});
-
-// 프로세스 종료 시에 데이터베이스 연결 해제
-process.on('SIGTERM', function () {
-    console.log("프로세스가 종료됩니다.");
-    app.close();
-});
-
-app.on('close', function () {
-	console.log("Express 서버 객체가 종료됩니다.");
-	if (database.db) {
-		database.db.close();
-	}
-});
-
-// Express 서버 시작
-http.createServer(app).listen(app.get('port'), function(){
-    console.log('서버가 시작되었습니다. 포트 : ' + app.get('port'));
-
-    // 데이터베이스 초기화
-    database.init(app, config);
-
+/* 익스프레스 서버 시작 */
+app.listen(port, () => {
+	console.log('Sever running on port : %s', port);
 });

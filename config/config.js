@@ -8,12 +8,23 @@ module.exports = {
 	server_port: 3000,
 	db_url: 'mongodb://localhost:27017/local',
 	db_schemas: [//db 스키마
-	    {file:'./user_schema', collection:'users3', schemaName:'UserSchema', modelName:'UserModel'}
+	    {file:'./user_schema', collection:'users4', schemaName:'UserSchema', modelName:'UserModel'}
 	],
-	route_info: [//라우팅 정보
-	    // user.js 모듈 파일에 선언된 함수를 로딩하여 처리하도록 설정(요청패스, 실행함수, 전송방식)
-	    {file:'./user', path:'/process/login', method:'login', type:'post'},	// user.login 
-	    {file:'./user', path:'/process/adduser', method:'adduser', type:'post'},// user.adduser 
-	    {file:'./user', path:'/process/listuser', method:'listuser', type:'post'}//user.listuser 
-	]
+	route_info: [
+	],
+	facebook: {		// passport facebook
+		clientID: '1442860336022433',
+		clientSecret: '13a40d84eb35f9f071b8f09de10ee734',
+		callbackURL: 'http://localhost:3000/auth/facebook/callback'
+	},
+	twitter: {		// passport twitter
+		clientID: 'id',
+		clientSecret: 'secret',
+		callbackURL: '/auth/twitter/callback'
+	},
+	google: {		// passport google
+		clientID: 'id',
+		clientSecret: 'secret',
+		callbackURL: '/auth/google/callback'
+	}
 }
