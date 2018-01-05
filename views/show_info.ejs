@@ -3,76 +3,15 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>My Workout Diary</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/kfonts2.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/simple-sidebar.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./css/workout_list.css">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="./js/jquery-3.2.1.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-
+    <% include ./css_sources.ejs %>
+    
 </head>
 
 <body>
 
     <div id="wrapper">
 
-      <!-- Sidebar -->
-      <div id="sidebar-wrapper">
-          <ul class="sidebar-nav">
-              <li class="sidebar-brand">
-                  <span>
-                  <img src="./img/user.png" alt="user" id="user" style="weight:45px; height:45px">
-                  </span>
-                  <span>
-                    <a href="#">  님 </br></a>
-                    <a href="#" id="weekly_amount"> 이번주 운동량 <strong>##</strong>회 </a>
-                  <span>
-              </li>
-              <li class="sidebar-menu">
-                  <div>
-                  <img src="./img/dashboard.png" alt="dashboard" id="dashboard" style="weight:23px; height:23px">
-                  </div>
-                  <a href="/dashboard">대시보드</a>
-              </li>
-              <li class="sidebar-menu">
-                  <div>
-                  <img src="./img/workout_list.png" alt="workout_list" id="workout_list" style="weight:30px; height:30px" >
-                  </div>
-                  <a href="/workout_list">운동일지</a>
-              </li>
-              <li class="sidebar-menu">
-                  <div>
-                  <img src="./img/diet.png" alt="diet" id="diet" style="weight:30px; height:30px" >
-                  </div>
-                  <a href="/diet_list">식단일지</a>
-              </li>
-              <hr/>
-            </li>
-              <li class="sidebar-menu">
-                  <div>
-                  <img src="./img/setting.png" alt="setting" id="setting" style="weight:30px; height:30px" >
-                  </div>
-                  <a href="#">환경설정</a>
-              </li>
-          </ul>
-      </div>
-      <!-- /#sidebar-wrapper -->
-
+    <% include ./sidebar.ejs %>
 
         <!-- 컨텐츠 영역 -->
         <!-- Page Content -->

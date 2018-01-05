@@ -60,7 +60,6 @@ function createSchema(app, config) {
 		// database 모듈 객체에 속성으로 추가
 		database[curItem.schemaName] = curSchema;
 		database[curItem.modelName] = curModel;
-//		database[curItem.modelName] = curModel;
 
 		console.log('스키마 이름 [%s], 모델 이름 [%s] 이 database 객체의 속성으로 추가됨.', curItem.schemaName, curItem.modelName);
 	}
