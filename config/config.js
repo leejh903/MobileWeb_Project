@@ -8,18 +8,22 @@ module.exports = {
 	server_port: 3000,
 	db_url: 'mongodb://localhost:27017/memberDB',
 	db_schemas: [//db 스키마
+		{file:'./info_schema', collection:'infos', schemaName:'InfoSchema', modelName:'InfoModel'},
 	    {file:'./user_schema', collection:'members', schemaName:'UserSchema', modelName:'UserModel'}
+
 	],
 
 	// 라우팅 모듈 적는 곳
 	route_info: [
 		// 라우팅 처리 할 file, type(get or post, 처리방법), path, method 필요
+		{file : './info', path : '/process/addinfo', method : 'addinfo', type : 'post'}
+		,{file : './info', path : '/process/showinfo', method : 'showinfo', type : 'post'}
 	],
 
 	facebook: {		// passport facebook
-		clientID: '1442860336022433',
-		clientSecret: '13a40d84eb35f9f071b8f09de10ee734',
-		callbackURL: 'http://localhost:3000/auth/facebook/callback'
+		clientID: '566179767054589',
+		clientSecret: '2291b1fb90b32aa789504082b099c853',
+		callbackURL: '/auth/facebook/callback'
 	},
 	google: {		// passport google
 		clientID: '806879796918-1f5kvth04q2so69oftgumlj85h4dk8i4.apps.googleusercontent.com',

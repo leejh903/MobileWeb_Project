@@ -10,17 +10,21 @@ var Schema = {};
 
 //Schema에 createSchema 함수 선언(mongoose객체는 app.js에서 전달받음)
 Schema.createSchema = function(mongoose) {
-	console.log('createSchema 호출')
+	console.log('user_schema 호출')
 
 	// 스키마 정의
 	// 이메일 인증 가능하게 수정
 	var UserSchema = mongoose.Schema({
 	    email : {type : String, 'default' : ''}
-			, hashed_password : {type : String, required : false, 'default' : ''}
+			, hashed_password : {type : String, 'default' : ''}
 			, name : {type : String, index : 'hashed', 'default' : ''}
-			, salt : {type : String, required : false}
+			, salt : {type : String, 'default' : ''}
 			, created_at : {type : Date, index : {unique : false}, 'default' : Date.now}
 			, updated_at : {type : Date, index : {unique : false}, 'default' : Date.now}
+			, provider : {type : String, 'default' : ''}
+      , authToken : {type : String, 'default' : ''}
+      , facebook : { }
+			, google : { }
 	});
 
 	/*  password를 virtual 메소드(가상 속성)로 정의
@@ -62,30 +66,10 @@ Schema.createSchema = function(mongoose) {
 		}
 	});
 
-	// 값이 유효한지 확인하는 함수 정의
-	var validatePresenceOf = function(value) {
-		return value && value.length;
-	};
-
-	// 저장 시의 트리거 함수 정의 (password 필드가 유효하지 않으면 에러 발생)
-	// UserSchema.pre('save', function(next) {
-	// 	if (!this.isNew) return next();
-	//
-	// 	if (!validatePresenceOf(this.password)) {
-	// 		next(new Error('유효하지 않은 password 필드입니다.'));
-	// 	} else {
-	// 		next();
-	// 	}
-	// })
-
 	// 입력된 칼럼의 값이 있는지 확인
 	UserSchema.path('email').validate(function (email) {
 		return email.length;
 	}, 'email 칼럼의 값이 없습니다.');
-
-	// UserSchema.path('hashed_password').validate(function (hashed_password) {
-	// 	return hashed_password.length;
-	// }, 'hashed_password 칼럼의 값이 없습니다.');
 
 
 	// 모델 객체에서 사용할 수 있는 메소드 정의

@@ -61,25 +61,13 @@
                   </div>
                   <a href="/diet_list">식단일지</a>
               </li>
-              <!-- 제안서 수정을 통해 반영 -->
-              <!-- <li class="sidebar-menu">
-                  <div>
-                  <img src="./img/bulletin_board.png" alt="bulletin_board" id="bulletin_board" style="weight:30px; height:30px" >
-                  </div>
-                  <a href="#">게시판</a>
-              </li> -->
               <hr/>
-              <!-- <li class="sidebar-menu">
-                  <div>
-                  <img src="./img/statistics.png" alt="statistics" id="statistics" style="weight:30px; height:30px" >
-                  </div>
-                  <a href="#">통계</a>
-              </li> -->
+            </li>
               <li class="sidebar-menu">
                   <div>
                   <img src="./img/setting.png" alt="setting" id="setting" style="weight:30px; height:30px" >
                   </div>
-                  <a href="#">환경설정</a>
+                  <a href="/profile">환경설정</a>
               </li>
           </ul>
       </div>
@@ -91,6 +79,9 @@
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
+                  <div class="header" style="padding-left:90%; padding-top:1%; ">
+                    <a href="/logout" class="btn btn-default btn-sm" style="background-color: rgb(200, 34, 38); color:white; font-size:1.1em; border-radius:7px" >로그아웃</a>
+                  </div>
                   <div class="col-md-12" style="text-align: center; letter-spacing:5px">
                     <a href="#navigation-main" id="navigation_mobile" aria-label="Skip to main navigation"> <i class="fa fa-bars" aria-hidden="true"></i></a>
                   </div>
@@ -139,6 +130,10 @@
                             <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
                           </tr>
                         </table>
+
+                        <form action="/process/showinfo" method="post" id="calendar_show">
+                          <input id='calendar_input' name="dates" type="hidden"></input></form>
+
                     </div>
                 </div>
               </div>
@@ -147,12 +142,18 @@
               <!-- 운동 목록 영역 -->
               <div class="col-md-7">
                 <h4 style="color:rgb(200, 34, 38); text-align:center">운동목록</h4>
+                <form action="/process/addinfo" method="post">
                 <ul class="list-group" id="day_workoutlist">
-                    <a>### % 달성 </a>
-                    <li class="list-group-item"><a href="#">기본 목록</a></li>
-              </ul>
+                    <div>
+                      <span>운동 동작을 등록하세요!</span>&nbsp;&nbsp;
+                      <span><button type="submit" name="">등록하기</button></span>
+                    <div>
+                      <li class="list-group-item day_list_title" style="border-left:none; border-right:none; border-bottom:none;"><a><input value="기본목록" name="motions" style="background-color:transparent; clear: none; border:0px none; border-image:none" readonly/></a></li>
+                    <!-- <li class="list-group-item"><a href="#">기본 목록</a></li> -->
+                </ul>
 
               <button type="button" id="button_add_workout_list" class="btn btn-default btn-circle btn-lg"><i id="plus" class="glyphicon glyphicon-plus"></i></button>
+              </form>
 
               </div>
               <!-- col-md-7 -->
@@ -262,7 +263,7 @@
      </div>
      <!-- lightbox end -->
 
-     <!-- 운동 일지 부분 -->
+     <!-- 운동 일지 부분(라이트박스2) -->
      <div id='lightbox2'>
        <div class="container-fluid">
          <div class="row">
@@ -282,18 +283,18 @@
              <ul class="list-group" id="plan_workout_ul">
                <li class="list-group-item">
                  <p>set1</p>
-                 <a> 0 kg </a>
-                 <a> 0 회 </a>
+                 <span> <a>0</a>회 </span>
+                 <span> <a>0</a>kg </span>
                </li>
                <li class="list-group-item">
                  <p>set2</p>
-                 <a> 0 kg </a>
-                 <a> 0 회 </a>
+                 <span> <a>0</a>회 </span>
+                 <span> <a>0</a>kg </span>
               </li>
                <li class="list-group-item">
                  <p>set3</p>
-                 <a> 0 kg </a>
-                 <a> 0 회 </a>
+                 <span> <a>0</a>회 </span>
+                 <span> <a>0</a>kg </span>
               </li>
              </ul>
              <span>
@@ -302,11 +303,18 @@
             </span>
          </div>
          <!-- row end -->
+
+         <div class="btn-close2">
+           <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+         </div>
+
        </div>
        <!-- container-fluid end -->
      </div>
      <!-- lightbox2 end -->
      </div>
+
+
 
      <div class="container">
      <!-- Modal 윈도우 선언-->
@@ -324,15 +332,15 @@
                     <div class="modal-body">
                       <form role="form" class="form-inline">
                           <div class="form-group">
-                              <input type="number" class="form-control">
+                              <input type="number" class="form-control" id="set_num">
                               <label for="set_number">회</label>
                           </div>
                           <div class="form-group">
-                              <input type="number" class="form-control">
+                              <input type="number" class="form-control" id="kg_num">
                               <label for="kg_number">kg</label>
                           </div>
-                          <div class="form-group">
-                              <button type="submit">확인</button>
+                          <div class="form-group" id="set_workout_amt">
+                              <button type="">확인</button>
                           </div>
                       </form>
                     </div>
@@ -371,12 +379,6 @@
           $("#wrapper").toggleClass("toggled");
         });
 
-        // + 버튼 누르면 라이트박스 등장(운동 추가 부분)
-        $("#button_add_workout_list").click(function(){
-          $('#lightbox').addClass('active');
-          $('#block').addClass('active');
-          $("#wrapper").removeClass("toggled"); // 사이드바 퇴장
-        });
 
         // 모바일 해상도에서 메뉴버튼 활성화, 사이드바 없애기
         if (window.matchMedia("(max-width: 768px)").matches) {
@@ -390,6 +392,9 @@
           $('.btn-close').click(function(){
             $("#wrapper").addClass("toggled"); // 사이드바 등장
         });
+        $('.btn-close2').click(function(){
+          $("#wrapper").addClass("toggled"); // 사이드바 등장
+      });
       }
 
         // 768px 해상도 변화에 따른 jquery

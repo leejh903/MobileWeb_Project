@@ -2,31 +2,11 @@
 
 /* 캘린더 함수 부분 */
 
-/*#calendar_wrap{
-  background: white;
-  width: 350px;
-  text-align: center;
-}
-table {
-    width: 120%;
-    height: 300px;
-}
-th,td{
-  color: black;
-  border: 1px solid #666;
-  border-collapse: collapse;
-}
-th,td{
-  /*width: 100%;*/
-  /*padding-left: 30px;
-  padding-right: 30px;*/
-}
-/*th:first-child, td:first-child{ color: red;}*/
+ td > a { color: black; cursor: hand;}
+ td > a:link { text-decoration : none; }
+ td > a:hover { color: rgb(160, 160, 160); }
 
-#calendar thead tr td {
-  text-align: left;
-}
-
+ th:first-child, td:first-child > a { color: rgb(200, 34, 38);}
 
 #prev, #next{
   display: inline-block;
@@ -63,11 +43,11 @@ caption {
 /*테이블 윗 부분 공간 두기*/
 
 .col-md-5 {
-  padding-top:70px;
+  padding-top:65px;
 }
 
 .col-md-7 {
-  padding-top:15px;
+  padding-top:10px;
 }
 
 /* 선택된 운동 목록 부분 */
@@ -131,6 +111,29 @@ caption {
 
 /* 라이트박스2(운동일지) 부분 */
 
+/* ****** active 부분 ***** */
+#lightbox2.active {
+  position: absolute; overflow: scroll;
+  background: white;
+  width: 800px; height: 540px;
+  left: 50%; margin-left: -400px;
+  top: 50%; margin-top: -250px;
+  box-sizing: border-box; padding: 5px;
+  z-index: 99; display: block;
+  padding-top: 10px;
+}
+
+#lightbox2 { display: none; }
+
+.btn-close2{
+	position: absolute;
+	top: 0px; right: 0px;
+  padding: 5px 10px;
+  padding-right: 0px;
+  padding-top: 0px;
+	color: black; font-size: 2.0em;
+}
+
 #lightbox2 > .container-fluid > .row > .col-md-6 {
   padding : 10px;
   padding-right : 0px;
@@ -173,17 +176,6 @@ caption {
   padding-bottom : 20px;
 }
 
-#lightbox2 {
-  position: absolute; overflow: scroll;
-  background: white;
-  width: 800px; height: 540px;
-  left: 50%; margin-left: -400px;
-  top: 50%; margin-top: -250px;
-  box-sizing: border-box; padding: 5px;
-  z-index: 99; display: block;
-  padding-top: 10px;
-}
-
 #plan_workout_table > .list-group > li{
   border-left-color:white;
   border-right-color:white;
@@ -197,7 +189,7 @@ caption {
   /*font-weight: bolder;*/
 }
 
-#plan_workout_table > .list-group > li > a {
+#plan_workout_table > .list-group > li > span {
   float: right;
   padding-right: 2.5em;
   font-size: 1.1em;
@@ -254,6 +246,10 @@ caption {
     vertical-align: middle;
     content: " ";
     height: 100%;
+  }
+
+  #set_num {
+    /*width: 80%;*/
   }
 }
 
@@ -320,6 +316,7 @@ caption {
 /* ****************************** */
 
 @media(max-width:768px) {
+  /*라이트박스1 창 조절*/
   #lightbox.active{
     position: absolute; overflow: hidden;
   	background: white;
@@ -329,6 +326,38 @@ caption {
   	box-sizing: border-box; padding: 5px;
   	z-index: 99; display: block;
     padding-top: 10px;
+  }
+
+  /*라이트박스2 창 조절*/
+  #lightbox2.active{
+    position: absolute; overflow: hidden;
+    background: white;
+    width: 100%; height: auto;
+    left: 52%; margin-left: -48%;
+    top: 50%; margin-top: -250px;
+    box-sizing: border-box; padding: 5px;
+    z-index: 99; display: block;
+    padding-top: 10px;
+  }
+
+  /*운동 세트, 무게 기록 창 조절*/
+  #plan_workout_table > .list-group > li{
+    border-left-color:white;
+    border-right-color:white;
+    padding : 5px;
+    height : 70px;
+    font-size: 1.1em;
+  }
+
+  #lightbox2 > .container-fluid > .row > .col-md-6 > div > a:first-child {
+    font-size: 1.1em;
+  }
+
+  #lightbox2 > .container-fluid > .row > .col-md-6 > p {
+    font-size: 1.0em;
+    padding : 0 4px;
+    color : rgb(140, 140, 140);
+    font-weight: lighter;
   }
 
   .list-group img {
@@ -357,4 +386,31 @@ caption {
   .col-md-7 {
     padding-top:10px;
   }
+
+  /* modal_content */
+  .form-group {
+    margin-right: 25px;
+  }
+
+  .form-group > .form-control {
+    width: 80px;
+    margin-right: 5px;
+  }
+
+  .form-inline {
+    padding-left: 20px;
+  }
+
+  .form-group > label {
+    float:right;
+    font-size: 1.2em;
+    font-weight: normal;
+    margin-top: 6px;
+  }
+
+  .modal-content {
+    margin-top: 80%;
+  }
+
+
 }

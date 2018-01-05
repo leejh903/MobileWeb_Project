@@ -39,7 +39,7 @@
                   <img src="./img/user.png" alt="user" id="user" style="weight:45px; height:45px">
                   </span>
                   <span>
-                    <a href="#"> 이용자 님 </br></a>
+                    <a href="#">  님 </br></a>
                     <a href="#" id="weekly_amount"> 이번주 운동량 <strong>##</strong>회 </a>
                   <span>
               </li>
@@ -47,34 +47,22 @@
                   <div>
                   <img src="./img/dashboard.png" alt="dashboard" id="dashboard" style="weight:23px; height:23px">
                   </div>
-                  <a href="./dashboard.html">대시보드</a>
+                  <a href="/dashboard">대시보드</a>
               </li>
               <li class="sidebar-menu">
                   <div>
                   <img src="./img/workout_list.png" alt="workout_list" id="workout_list" style="weight:30px; height:30px" >
                   </div>
-                  <a href="./workout_list.html">운동일지</a>
+                  <a href="/workout_list">운동일지</a>
               </li>
               <li class="sidebar-menu">
                   <div>
                   <img src="./img/diet.png" alt="diet" id="diet" style="weight:30px; height:30px" >
                   </div>
-                  <a href="./diet_list.html">식단일지</a>
+                  <a href="/diet_list">식단일지</a>
               </li>
-              <!-- 제안서 수정을 통해 반영 -->
-              <!-- <li class="sidebar-menu">
-                  <div>
-                  <img src="./img/bulletin_board.png" alt="bulletin_board" id="bulletin_board" style="weight:30px; height:30px" >
-                  </div>
-                  <a href="#">게시판</a>
-              </li> -->
               <hr/>
-              <!-- <li class="sidebar-menu">
-                  <div>
-                  <img src="./img/statistics.png" alt="statistics" id="statistics" style="weight:30px; height:30px" >
-                  </div>
-                  <a href="#">통계</a>
-              </li> -->
+            </li>
               <li class="sidebar-menu">
                   <div>
                   <img src="./img/setting.png" alt="setting" id="setting" style="weight:30px; height:30px" >
@@ -139,6 +127,10 @@
                             <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
                           </tr>
                         </table>
+
+                        <form action="/process/showinfo" method="post" id="calendar_show">
+                          <input id='calendar_input' name="dates" type="hidden"></input></form>
+
                     </div>
                 </div>
               </div>
@@ -147,12 +139,19 @@
               <!-- 운동 목록 영역 -->
               <div class="col-md-7">
                 <h4 style="color:rgb(200, 34, 38); text-align:center">운동목록</h4>
+                <form action="/process/addinfo" method="post">
                 <ul class="list-group" id="day_workoutlist">
-                    <a>### % 달성 </a>
-                    <li class="list-group-item"><a href="#">기본 목록</a></li>
-              </ul>
+                    <div>
+                      <span>운동 동작을 등록하세요!</span>&nbsp;&nbsp;
+                      <span><button type="submit" name="">등록하기</button></span>
+                    <div>
+
+
+                    <!-- <li class="list-group-item"><a href="#">기본 목록</a></li> -->
+                </ul>
 
               <button type="button" id="button_add_workout_list" class="btn btn-default btn-circle btn-lg"><i id="plus" class="glyphicon glyphicon-plus"></i></button>
+              </form>
 
               </div>
               <!-- col-md-7 -->
@@ -262,51 +261,9 @@
      </div>
      <!-- lightbox end -->
 
-     <!-- 운동 일지 부분 -->
-     <div id='lightbox2'>
-       <div class="container-fluid">
-         <div class="row">
-           <div class="col-md-6">
-             <!-- 동작 설명 사진 -->
-             <img id="img_motion" src="img/Romanian-Deadlift.jpg" onerror="this.src='../public/img/default_image.png'"/>
-             <!-- 동작 제목 -->
-             <div>
-               <a>루마니안 데드리프트</a></br>
-               <a>Romanian Deadlift</a>
-             </div>
-             <p>루마니안 데프리프트는 무게를 들고 상체를 숙였다가 펴주어 등과 허리, 하체를 강화시켜주는 운동이다. 일반적으로 데프리프트 중에서 가장 많이 구사되는 동작으로 탄력있는 뒷태와 힙업 및 강한 하체를 만드는데 효과적인 운동이다.</p>
-           <!-- col-md-6 end-->
-         </div>
+     <!-- 운동 일지 부분(라이트박스2) -->
 
-           <div class="col-md-6" id="plan_workout_table">
-             <ul class="list-group" id="plan_workout_ul">
-               <li class="list-group-item">
-                 <p>set1</p>
-                 <a> 0 kg </a>
-                 <a> 0 회 </a>
-               </li>
-               <li class="list-group-item">
-                 <p>set2</p>
-                 <a> 0 kg </a>
-                 <a> 0 회 </a>
-              </li>
-               <li class="list-group-item">
-                 <p>set3</p>
-                 <a> 0 kg </a>
-                 <a> 0 회 </a>
-              </li>
-             </ul>
-             <span>
-               <button type="button" class="btn btn-default "><i class="glyphicon glyphicon-plus" id="add_amount_workout"></i></button>
-               <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-minus" id="minus_amount_workout"></i></button>
-            </span>
-         </div>
-         <!-- row end -->
-       </div>
-       <!-- container-fluid end -->
-     </div>
-     <!-- lightbox2 end -->
-     </div>
+
 
      <div class="container">
      <!-- Modal 윈도우 선언-->
@@ -324,14 +281,14 @@
                     <div class="modal-body">
                       <form role="form" class="form-inline">
                           <div class="form-group">
-                              <input type="number" class="form-control">
+                              <input type="number" class="form-control" id="set_num">
                               <label for="set_number">회</label>
                           </div>
                           <div class="form-group">
-                              <input type="number" class="form-control">
+                              <input type="number" class="form-control" id="kg_num">
                               <label for="kg_number">kg</label>
                           </div>
-                          <div class="form-group">
+                          <div class="form-group" id="set_workout_amt">
                               <button type="submit">확인</button>
                           </div>
                       </form>
