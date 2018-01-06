@@ -86,10 +86,7 @@ var showinfo = function(req, res){
         var Array_length = motions_Array.length;
         var user = req.user;
         var context = {
-          motions_list,
-          motions_Array,
-          Array_length,
-          user
+          motions_list, motions_Array, Array_length, user, paramDates
         };
 
         // 뷰 템플릿을 이용하여 렌더링한 후 전송
@@ -98,8 +95,19 @@ var showinfo = function(req, res){
           console.log('응답 웹 문서 : ' + html)
           res.end(html);
         });
-      }else {
-        return res.redirect('/workout_list');
+      } else {
+        var motions_list = '';
+        var motions_Array = motions_list.split('');
+        var Array_length = motions_Array.length;
+        var user = req.user;
+        var context = {
+          motions_list, motions_Array, Array_length, user, paramDates
+        };
+        return req.app.render('show_info.ejs', context, function(err, html){
+          if(err) {throw err;}
+          console.log('응답 웹 문서 : ' + html)
+          res.end(html);
+        });
       }
 
   })

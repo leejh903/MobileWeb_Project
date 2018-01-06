@@ -34,21 +34,23 @@
               <div class="col-md-7">
                 <h4 style="color:rgb(200, 34, 38); text-align:center">운동목록</h4>
                 <!-- action 부분을 클릭 이벤트로 추가시킬 수 있게 해보자 -->
-                <form method="post" id="add_workout_db">
+                <form method="post" action="/addinfo" id="add_workout_db">
                 <ul class="list-group" id="day_workoutlist">
                     <div>
                       <span>운동 동작을 등록하세요!</span>&nbsp;&nbsp;
                       <span><button type="submit" name="">등록하기</button></span>
                     <div>
-                      <li class="list-group-item day_list_title" style="border-left:none; border-right:none; border-bottom:none;"><a><input value="기본목록" name="motions" style="background-color:transparent; clear: none; border:0px none; border-image:none" readonly/></a></li>
+                      <!-- <li class="list-group-item day_list_title" style="border-left:none; border-right:none; border-bottom:none;"><a><input value="기본목록" name="motions" style="background-color:transparent; clear: none; border:0px none; border-image:none" readonly/></a></li> -->
                     <!-- <li class="list-group-item"><a href="#">기본 목록</a></li> -->
 
                     <% for(var i=0; i < Array_length; i++) { %>
                       <li class="list-group-item day_list_title" style="border-left:none; border-right:none; border-bottom:none;"><a> <%= motions_Array[i] %> </a></li>
                     <% } %>
+
                 </ul>
 
               <button type="button" id="button_add_workout_list" class="btn btn-default btn-circle btn-lg"><i id="plus" class="glyphicon glyphicon-plus"></i></button>
+              <input value= '<%= paramDates %>' style="color: white; border-color: transparent" name="dates">
               </form>
 
               </div>
