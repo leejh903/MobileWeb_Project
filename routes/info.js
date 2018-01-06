@@ -92,7 +92,6 @@ var showinfo = function(req, res){
         // 뷰 템플릿을 이용하여 렌더링한 후 전송
         return req.app.render('show_info.ejs', context, function(err, html){
           if(err) {throw err;}
-          console.log('응답 웹 문서 : ' + html)
           res.end(html);
         });
       } else {

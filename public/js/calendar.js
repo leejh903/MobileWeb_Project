@@ -29,13 +29,15 @@ function calendar(new_year, new_month) {
     // 한달치 날짜를 테이블에 시작요일(day)부터 순서대로 표시(d_length까지)
     for (var i = day; i < day + d_length; i++) {
 
-        // 오늘 날짜 나타낼 수 있도록 표시
-        var today = new Date();
-        var dd = today.getDate();
-        var mm = today.getMonth()+1;
-        var yyyy = today.getFullYear();
-        var todaydate = yyyy + '-' + mm + '-' + dd
-        var calendardate = year + '-' + (month+1) + '-' + date
+      var calendardate = year + '-' + (month+1) + '-' + date
+
+      // 오늘 날짜 나타낼 수 있도록
+      var today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth()+1;
+      var yyyy = today.getFullYear();
+      var todaydate = yyyy + '-' + mm + '-' + dd
+
         if(todaydate == calendardate){
           console.log('날짜가 일치하는 날이 존재');
           $start_day.eq(i).html('<div style= "background-color:rgb(200, 34, 38); border-radius: 100%; width: 20px;"> <a style="color:white; padding-left:5px;">' + date +'</a></div>'); // 다르게
