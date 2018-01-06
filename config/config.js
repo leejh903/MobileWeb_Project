@@ -16,8 +16,8 @@ module.exports = {
 	// 라우팅 모듈 적는 곳
 	route_info: [
 		// 라우팅 처리 할 file, type(get or post, 처리방법), path, method 필요
-		{file : './info', path : '/process/addinfo', method : 'addinfo', type : 'post'}
-		,{file : './info', path : '/process/showinfo', method : 'showinfo', type : 'post'}
+		{file : './info', path : '/addinfo', method : 'addinfo', type : 'post'}
+		,{file : './info', path : '/showinfo', method : 'showinfo', type : 'post'}
 	],
 
 	facebook: {		// passport facebook

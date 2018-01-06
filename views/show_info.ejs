@@ -3,90 +3,49 @@
 
 <head>
 
-    <% include ./css_sources.ejs %>
-    
+  <% include ./css_sources.ejs %>
+  <link href="./css/workout_list.css" rel="stylesheet">
+
 </head>
 
 <body>
 
     <div id="wrapper">
 
-    <% include ./sidebar.ejs %>
+      <% include ./sidebar.ejs %>
 
         <!-- 컨텐츠 영역 -->
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
+                  <div class="header" style="padding-left:90%; padding-top:1%; ">
+                    <a href="/logout" class="btn btn-default btn-sm" style="background-color: rgb(200, 34, 38); color:white; font-size:1.1em; border-radius:7px" >로그아웃</a>
+                  </div>
                   <div class="col-md-12" style="text-align: center; letter-spacing:5px">
                     <a href="#navigation-main" id="navigation_mobile" aria-label="Skip to main navigation"> <i class="fa fa-bars" aria-hidden="true"></i></a>
                   </div>
                 </div>
 
                 <div class="row">
-                <!-- 달력 영역 -->
-                <div class="col-md-5">
-                    <div id="calendar_wrap">
-                      <div class="table-responsive" style="border:0">
-                        <table class="table">
-                          <caption id="caption" style="text-align:center">
-                            <a href="#" id="prev">prev &lt;&nbsp;&nbsp;&nbsp;</a>
-                            <span class="year"></span>년
-                            <span class="month"></span>월
-                            <a href="#" id="next">&nbsp;&nbsp;&nbsp;&gt; next</a>
-                          </caption>
-                          <thead>
-                          <tr>
-                            <th>일</th><th>월</th><th>화</th><th>수</th>
-                            <th>목</th><th>금</th><th>토</th>
-                          </tr>
-                        </thead>
-                          <tr>
-                            <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
-                            <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
-                          </tr>
-                          <tr>
-                            <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
-                            <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
-                          </tr>
-                          <tr>
-                            <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
-                            <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
-                          </tr>
-                          <tr>
-                            <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
-                            <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
-                          </tr>
-                          <tr>
-                            <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
-                            <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
-                          </tr>
-                          <tr>
-                            <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
-                            <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
-                          </tr>
-                        </table>
-
-                        <form action="/process/showinfo" method="post" id="calendar_show">
-                          <input id='calendar_input' name="dates" type="hidden"></input></form>
-
-                    </div>
-                </div>
-              </div>
-                <!-- div class="col-md-5"  -->
+                <% include ./calendar.ejs %>
 
               <!-- 운동 목록 영역 -->
               <div class="col-md-7">
                 <h4 style="color:rgb(200, 34, 38); text-align:center">운동목록</h4>
-                <form action="/process/addinfo" method="post">
+                <!-- action 부분을 클릭 이벤트로 추가시킬 수 있게 해보자 -->
+                <form method="post" id="add_workout_db">
                 <ul class="list-group" id="day_workoutlist">
                     <div>
                       <span>운동 동작을 등록하세요!</span>&nbsp;&nbsp;
                       <span><button type="submit" name="">등록하기</button></span>
                     <div>
-
-
+                      <li class="list-group-item day_list_title" style="border-left:none; border-right:none; border-bottom:none;"><a><input value="기본목록" name="motions" style="background-color:transparent; clear: none; border:0px none; border-image:none" readonly/></a></li>
                     <!-- <li class="list-group-item"><a href="#">기본 목록</a></li> -->
+
+                    <% for(var i=0; i < Array_length; i++) { %>
+                      <li class="list-group-item day_list_title" style="border-left:none; border-right:none; border-bottom:none;"><a> <%= motions_Array[i] %> </a></li>
+                    <% } %>
                 </ul>
 
               <button type="button" id="button_add_workout_list" class="btn btn-default btn-circle btn-lg"><i id="plus" class="glyphicon glyphicon-plus"></i></button>
@@ -201,6 +160,55 @@
      <!-- lightbox end -->
 
      <!-- 운동 일지 부분(라이트박스2) -->
+     <div id='lightbox2'>
+       <div class="container-fluid">
+         <div class="row">
+           <div class="col-md-6">
+             <!-- 동작 설명 사진 -->
+             <img id="img_motion" src="img/Romanian-Deadlift.jpg" onerror="this.src='../public/img/default_image.png'"/>
+             <!-- 동작 제목 -->
+             <div>
+               <a>루마니안 데드리프트</a></br>
+               <a>Romanian Deadlift</a>
+             </div>
+             <p>루마니안 데프리프트는 무게를 들고 상체를 숙였다가 펴주어 등과 허리, 하체를 강화시켜주는 운동이다. 일반적으로 데프리프트 중에서 가장 많이 구사되는 동작으로 탄력있는 뒷태와 힙업 및 강한 하체를 만드는데 효과적인 운동이다.</p>
+           <!-- col-md-6 end-->
+         </div>
+
+           <div class="col-md-6" id="plan_workout_table">
+             <ul class="list-group" id="plan_workout_ul">
+               <li class="list-group-item">
+                 <p>set1</p>
+                 <span> <a>0</a>회 </span>
+                 <span> <a>0</a>kg </span>
+               </li>
+               <li class="list-group-item">
+                 <p>set2</p>
+                 <span> <a>0</a>회 </span>
+                 <span> <a>0</a>kg </span>
+              </li>
+               <li class="list-group-item">
+                 <p>set3</p>
+                 <span> <a>0</a>회 </span>
+                 <span> <a>0</a>kg </span>
+              </li>
+             </ul>
+             <span>
+               <button type="button" class="btn btn-default "><i class="glyphicon glyphicon-plus" id="add_amount_workout"></i></button>
+               <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-minus" id="minus_amount_workout"></i></button>
+            </span>
+         </div>
+         <!-- row end -->
+
+         <div class="btn-close2">
+           <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+         </div>
+
+       </div>
+       <!-- container-fluid end -->
+     </div>
+     <!-- lightbox2 end -->
+     </div>
 
 
 
@@ -228,7 +236,7 @@
                               <label for="kg_number">kg</label>
                           </div>
                           <div class="form-group" id="set_workout_amt">
-                              <button type="submit">확인</button>
+                              <button type="">확인</button>
                           </div>
                       </form>
                     </div>
@@ -245,6 +253,7 @@
      <!-- /#wrapper -->
 
         <script src="./js/add_workout_list.js"></script>
+        <script src="./js/calendar.js"></script>
 
         <!-- Bootstrap core JavaScript -->
         <script src="vendor/jquery/jquery.min.js"></script>
@@ -252,11 +261,6 @@
 
         <!-- Menu Toggle Script -->
         <script>
-        // Toggle Menu 누를 때 왼쪽 사이드바 등장
-        // $("#menu-toggle").click(function(e) {
-        //     e.preventDefault();
-        //     $("#wrapper").toggleClass("toggled");
-        // });
 
         // 토글 항시 활성화
         $("#wrapper").addClass("toggled");
@@ -267,12 +271,6 @@
           $("#wrapper").toggleClass("toggled");
         });
 
-        // + 버튼 누르면 라이트박스 등장(운동 추가 부분)
-        $("#button_add_workout_list").click(function(){
-          $('#lightbox').addClass('active');
-          $('#block').addClass('active');
-          $("#wrapper").removeClass("toggled"); // 사이드바 퇴장
-        });
 
         // 모바일 해상도에서 메뉴버튼 활성화, 사이드바 없애기
         if (window.matchMedia("(max-width: 768px)").matches) {
@@ -286,6 +284,9 @@
           $('.btn-close').click(function(){
             $("#wrapper").addClass("toggled"); // 사이드바 등장
         });
+        $('.btn-close2').click(function(){
+          $("#wrapper").addClass("toggled"); // 사이드바 등장
+      });
       }
 
         // 768px 해상도 변화에 따른 jquery

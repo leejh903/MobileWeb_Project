@@ -12,7 +12,7 @@ var LocalStrategy = require('passport-local').Strategy;
 module.exports = new LocalStrategy({
 		usernameField : 'email',
 		passwordField : 'password',
-		passReqToCallback : true    // 이 옵션을 설정하면 아래 콜백 함수의 첫번째 파라미터로 req 객체 전달됨
+		passReqToCallback : true   // 이 옵션을 설정하면 아래 콜백 함수의 첫번째 파라미터로 req 객체 전달됨
 	}, function(req, email, password, done) {
         // 요청 파라미터 중 name 파라미터 확인
         var paramName = req.body.name || req.query.name;

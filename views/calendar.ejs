@@ -2,6 +2,7 @@
 <div class="col-md-5">
     <div id="calendar_wrap">
       <div class="table-responsive" style="border:0">
+        <form action="/showinfo" id="calendar_output" method="post">
         <table class="table">
           <caption id="caption" style="text-align:center">
             <a href="#" id="prev">prev &lt;&nbsp;&nbsp;&nbsp;</a>
@@ -40,6 +41,8 @@
             <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
           </tr>
         </table>
+        <input value=' ' name="dates" id="calendar_input" style="color: white; border-color: transparent"></input>
+      </form>
     </div>
 </div>
 </div>

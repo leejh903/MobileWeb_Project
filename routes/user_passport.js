@@ -170,7 +170,6 @@ module.exports = function(router, passport) {
         res.redirect('/');
     });
 
-
     // 로그인 인증
     router.route('/login').post(passport.authenticate('local-login', {
         successRedirect : '/dashboard',

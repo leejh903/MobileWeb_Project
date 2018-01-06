@@ -79,15 +79,15 @@ configPassport(app, passport);
 var userPassport = require('./routes/user_passport');
 userPassport(router, passport);
 
-// 404 에러 페이지 처리
-var errorHandler = expressErrorHandler({
- static: {
-   '404': './public/404.html'
- }
-});
-
-app.use( expressErrorHandler.httpError(404) );
-app.use( errorHandler );
+// // 404 에러 페이지 처리
+// var errorHandler = expressErrorHandler({
+//  static: {
+//    '404': './public/404.html'
+//  }
+// });
+//
+// app.use( expressErrorHandler.httpError(404) );
+// app.use( errorHandler );
 
 //===== 서버 시작 =====//
 

@@ -84,9 +84,16 @@ var showinfo = function(req, res){
         var motions_list = results[0]._doc.motions;
         var motions_Array = motions_list.split(',');
         var Array_length = motions_Array.length;
+        var user = req.user;
+        var context = {
+          motions_list,
+          motions_Array,
+          Array_length,
+          user
+        };
 
         // 뷰 템플릿을 이용하여 렌더링한 후 전송
-        return req.app.render('show_info', results, function(err, html){
+        return req.app.render('show_info.ejs', context, function(err, html){
           if(err) {throw err;}
           console.log('응답 웹 문서 : ' + html)
           res.end(html);

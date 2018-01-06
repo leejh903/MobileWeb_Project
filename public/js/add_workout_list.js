@@ -1,5 +1,5 @@
 (function () {
-    
+
     /* 클릭 이벤트 발생시 운동목록에 운동 추가 */
     add_motionlist();
 
@@ -148,7 +148,7 @@ $set_minus.click(function(){
     // 조건 맞으면 실제 리스트 추가
       if(event.target.nodeName == "LI" && i == 1){
 			   var workout_name = $(event.target).text();  // 클릭한 운동 이름 반환
-			   day_list.innerHTML += '<li class="list-group-item day_list_title"><a><input value="' + workout_name + '"name="motions" style="background-color:transparent; clear: none; border:0px none; border-image:none" readonly/></a></li>';
+			   day_list.innerHTML += '<li class="list-group-item day_list_title"><a><input value="' + workout_name + '" name="motions" style="background-color:transparent; clear: none; border:0px none; border-image:none" readonly/></a></li>';
       }
   })
 }
