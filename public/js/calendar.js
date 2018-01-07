@@ -55,12 +55,19 @@ function calendar(new_year, new_month) {
     // 날짜 클릭 하였을 때 이벤트 추가
     for (var i = day; i < day + d_length; i++) {
        $start_day.eq(i).click(function() {
-        console.log(year + '/' + (month+1) + '/' + $(this).text());
+        console.log(year + '-' + (month+1) + '-' + $(this).text());
+
+        var mm = month + 1;
+        var dd = $(this).text();
+
+        if(mm<10){ mm = '0' + mm }
+        if(dd<10){ dd = '0' + dd }
 
        // form 태그 안에 날짜 값 전달되도록(안보이게 설정)
-      $('#calendar_input').val(year + '-' + (month+1) + '-' + $(this).text());
+      $('#calendar_input').val(year + '-' + mm + '-' + dd);
       // action 실행
       document.getElementById('calendar_output').submit();
+
 
        })
     }
@@ -75,7 +82,7 @@ function calendar(new_year, new_month) {
 
       //현재 시점을 기준으로 calendar() 함수 호출
       console.log(year,month);
-    calendar(year, month);
+      calendar(year, month);
 
       //이전달 정보를 요청하는 네비게이션 버튼의 이벤트 핸들러 설정
     $prev.click(function () {

@@ -34,46 +34,46 @@ Info_Schema.createSchema = function(mongoose) {
 
         info.save(callback);
       });
-    },
-
-    addAmounts: function(motions, amount, callback){
-      this.amount.push({
-        motion: motions.motion,
-        set: amount.set,
-        kg: amount.kg
-      });
-      this.save(callback);
-    },
-
-    removeAmounts: function(id, callback){
-      var index = utils.indexOf(this.amounts, {id : id});
-
-      if(~index) {
-        this.comment.splice(index, 1);
-      } else {
-        return callback('동작 [' + id + ']를 가진 객체를 찾을 수 없습니다.')
-      }
-      this.save(callback);
-  }
+    }
+  //
+  //   addAmounts: function(motions, amount, callback){
+  //     this.amount.push({
+  //       motion: motions.motion,
+  //       set: amount.set,
+  //       kg: amount.kg
+  //     });
+  //     this.save(callback);
+  //   },
+  //
+  //   removeAmounts: function(id, callback){
+  //     var index = utils.indexOf(this.amounts, {id : id});
+  //
+  //     if(~index) {
+  //       this.comment.splice(index, 1);
+  //     } else {
+  //       return callback('동작 [' + id + ']를 가진 객체를 찾을 수 없습니다.')
+  //     }
+  //     this.save(callback);
+  // }
 }
 
   InfoSchema.statics = {
     // Id로 날짜, 운동동작 찾기
     load: function(id, date, callback){
       this.find({$and:[{users: id},{dates: date}]})
-        .populate('users')
+        .populate('users') // 조인
         // .populate('motions')
         // .populate('amounts.motion')
         .exec(callback);
-  },
-    list: function(options, callback) {
-      var criteria = options.criteria || {};
-
-      this.find(criteria)
-        .populate('dates')
-        .sort({'created_at': -1})
-        .exec(callback);
   }
+  //   list: function(options, callback) {
+  //     var criteria = options.criteria || {};
+  //
+  //     this.find(criteria)
+  //       .populate('dates')
+  //       .sort({'created_at': -1})
+  //       .exec(callback);
+  // }
 }
 
   console.log('InfoSchema 정의함.');

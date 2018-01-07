@@ -28,7 +28,58 @@
                 </div>
 
                 <div class="row">
-                <% include ./calendar.ejs %>
+
+                  <div class="col-md-5">
+                    <!-- 날짜 선택이 안되어있으면 표시 -->
+                    <% if (message.length > 0) { %>
+                    <div class="alert alert-danger" style="background-color:rgb(200, 34, 38); color:white"><%= message %></div>
+                    <% } %>
+                      <div id="calendar_wrap">
+                        <div class="table-responsive" style="border:0">
+                          <form action="/showinfo" id="calendar_output" method="get">
+                          <table class="table">
+                            <caption id="caption" style="text-align:center">
+                              <a href="#" id="prev">prev &lt;&nbsp;&nbsp;&nbsp;</a>
+                              <span class="year"></span>년
+                              <span class="month"></span>월
+                              <a href="#" id="next">&nbsp;&nbsp;&nbsp;&gt; next</a>
+                            </caption>
+                            <thead>
+                            <tr>
+                              <th>일</th><th>월</th><th>화</th><th>수</th>
+                              <th>목</th><th>금</th><th>토</th>
+                            </tr>
+                          </thead>
+                            <tr>
+                              <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                              <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                              <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                              <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                              <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                              <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                              <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                              <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                              <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                              <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                              <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                              <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                            </tr>
+                          </table>
+                          <input value=' ' name="dates" id="calendar_input" style="color: white; border-color: transparent"></input>
+                        </form>
+                      </div>
+                  </div>
+                  </div>
 
               <!-- 운동 목록 영역 -->
               <div class="col-md-7">
@@ -40,12 +91,11 @@
                       <span>운동 동작을 등록하세요!</span>&nbsp;&nbsp;
                       <span><button type="submit" name="">등록하기</button></span>
                     <div>
-                      <!-- <li class="list-group-item day_list_title" style="border-left:none; border-right:none; border-bottom:none;"><a><input value="기본목록" name="motions" style="background-color:transparent; clear: none; border:0px none; border-image:none" readonly/></a></li> -->
-                    <!-- <li class="list-group-item"><a href="#">기본 목록</a></li> -->
 
                     <% for(var i=0; i < Array_length; i++) { %>
-                      <li class="list-group-item day_list_title" style="border-left:none; border-right:none; border-bottom:none;"><a> <%= motions_Array[i] %> </a></li>
+                      <li class="list-group-item day_list_title" style="border-left:none; border-right:none; border-bottom:none;"><a><input value="<%= motions_Array[i] %>" name="motions" style="background-color:transparent; clear: none; border:0px none; border-image:none" readonly/></a></li>
                     <% } %>
+
 
                 </ul>
 
@@ -126,6 +176,7 @@
 
        // 클릭한 날 표시하기
        var clickdates = '<%= paramDates %>';
+       clickdates = clickdates.replace(/ /gi,""); // 모든 공백 제거
        console.log(clickdates);
 
        /* ************************************************************ */
@@ -159,13 +210,25 @@
            // 한달치 날짜를 테이블에 시작요일(day)부터 순서대로 표시(d_length까지)
            for (var i = day; i < day + d_length; i++) {
 
-             var calendardate = year + '-' + (month+1) + '-' + date
+            // 10이하 날짜일 때 앞에 0붙여주기
+            var ddd = date;
+            var mmm = month+1;
+
+            if(ddd < 10) { ddd = '0' + ddd}
+            if(mmm < 10) { mmm = '0' + mmm}
+
+             var calendardate = year + '-' + mmm + '-' + ddd;
 
              // 오늘 날짜 나타낼 수 있도록
              var today = new Date();
              var dd = today.getDate();
              var mm = today.getMonth()+1;
              var yyyy = today.getFullYear();
+
+            // 10이하 날짜일 때 앞에 0붙여주기
+            if(mm < 10) { mm = '0' + mm }
+            if(dd < 10) { dd = '0' + dd }
+
              var todaydate = yyyy + '-' + mm + '-' + dd
 
                if(todaydate == calendardate){
@@ -189,10 +252,19 @@
            // 날짜 클릭 하였을 때 이벤트 추가
            for (var i = day; i < day + d_length; i++) {
               $start_day.eq(i).click(function() {
-               console.log(year + '/' + (month+1) + '/' + $(this).text());
+               console.log(year + '-' + (month+1) + '-' + $(this).text());
+
+               var mm = month + 1;
+               var dd = $(this).text();
+
+               if(mm<10){ mm = '0' + mm }
+               if(dd<10){ dd = '0' + dd }
+
+               var inputdate = year + '-' + mm + '-' + dd;
 
               // form 태그 안에 날짜 값 전달되도록(안보이게 설정)
-             $('#calendar_input').val(year + '-' + (month+1) + '-' + $(this).text());
+              // inputdate.replcae는 공백 제거하기 위함
+             $('#calendar_input').val(inputdate.replace(/ /gi, ""));
              // action 실행
              document.getElementById('calendar_output').submit();
 
@@ -206,6 +278,13 @@
            var $next = $('#next');//이후
            var year = new Date().getFullYear();//년
            var month = new Date().getMonth()+1;//월
+
+        // 클릭한 달이 표시되도록 날짜 재설정
+        if(clickdates.length > 0){
+            var clickdates_array = clickdates.split('-');
+            year = clickdates_array[0];
+            month = clickdates_array[1];
+          }
 
              //현재 시점을 기준으로 calendar() 함수 호출
              console.log(year,month);

@@ -123,32 +123,49 @@ $set_minus.click(function(){
 	var day_list = document.getElementById('day_workoutlist');
   var day_list_index = [];
 
+  var motions_array = $("input[name=motions]");
+  var motions_array_length = motions_array.length;
+  console.log(motions_array_length);
+
 	// 리스트 추가
   $list.click(function(){
 
-    console.log($list.index(this));  // 선택한 요소의 인덱스 번호
-
-    // 같은 제목인거 필터링
     var i = 0;  // i는 플래그
+    var a = 0;  // a도 플래그
 
+    // db에 같은 값 있는지 비교
+    for(var b=0; b < motions_array_length+1; b++){
+      if(motions_array.eq(b).val() == $(this).text()){
+        console.log("db에 같은게 있는 경우");
+        break;
+      } else if(b == motions_array_length){
+        console.log("db에 같은게 없는 경우");
+        a = 1;
+        break;
+      }
+    }
+
+    // db에 똑같은 값 없을 때
+    if(a == 1){
+
+    // 새로 추가할 것 중 같은 제목인거 필터링
     for(var j=0; j < day_list_index.length+1; j++){
       if(day_list_index[j] == $list.index(this)){
         console.log("같은게 있는 경우")
         break;
       } else if(j == day_list_index.length) {
         console.log("같은게 없는 경우 추가")
-        day_list_index[day_list_index.length] = $list.index(this);
+        day_list_index[day_list_index.length] = $list.index(this);  // 배열에 새로 추가
         i = 1;
         break;
       }
     }
 
-    console.log(day_list_index);  // 추가된 요소의 배열
-
     // 조건 맞으면 실제 리스트 추가
       if(event.target.nodeName == "LI" && i == 1){
 			   var workout_name = $(event.target).text();  // 클릭한 운동 이름 반환
 			   day_list.innerHTML += '<li class="list-group-item day_list_title"><a><input value="' + workout_name + '" name="motions" style="background-color:transparent; clear: none; border:0px none; border-image:none" readonly/></a></li>';
+      }
       }
   })
 }
