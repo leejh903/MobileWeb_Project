@@ -36,6 +36,8 @@ $(function(){
 	// 라이트 박스 닫기 버튼  click 이벤트
 	$(".btn-close").click(function(){
 		lightbox_close();
+    // 바로 데이터베이스로 정보 전송이 되도록
+    document.getElementById('add_workout_db').submit();
 	});
 
   // + 버튼 누르면 라이트박스 등장(운동 추가 부분)
@@ -54,10 +56,11 @@ $(function(){
 
 	var $lightbox2 = $('#lightbox2');//라이트박스 본체
   var $block = $('#block');	// 라이트박스 배경
-  var $motion_detail = $('.day_list_title')
+  // var $motion_detail = $('#day_workoutlist').find('li');
+  var $motion_detail = $('input[name=motions]');
 
 	/* 라이트 박스 열기 */
-	function lightbox2_open(num){
+	function lightbox2_open(){
 		$lightbox2.addClass('active');
 		$block.addClass('active');
 	}
@@ -75,10 +78,22 @@ $(function(){
 
   $motion_detail.click(function(){
     console.log(this);
-    $('#lightbox2').addClass('active');
-    $('#block').addClass('active');
-    $("#wrapper").removeClass("toggled"); // 사이드바 퇴장
+
+    // input에 값 넣고 db로 보내기
+    $('#open_lightbox2 > input').val($(this).val());
+
+    console.log($('#open_lightbox2 > input').val());
+
+    document.getElementById('open_lightbox2').submit();
+
   });
+
+  if($('#title_motion').text().length > 0){
+  // 라이트창2 열기
+  $("#wrapper").removeClass("toggled");
+  // 사이드바 퇴장
+  lightbox2_open();
+  }
 
 });
 
@@ -110,7 +125,7 @@ $set_minus.click(function(){
     set_list.removeChild(set_list.lastChild);
     }
 })
-
+console.log('set_list : ' + set_list);
 }
 
 /* ************************************************************ */
@@ -164,7 +179,7 @@ $set_minus.click(function(){
     // 조건 맞으면 실제 리스트 추가
       if(event.target.nodeName == "LI" && i == 1){
 			   var workout_name = $(event.target).text();  // 클릭한 운동 이름 반환
-			   day_list.innerHTML += '<li class="list-group-item day_list_title"><a><input value="' + workout_name + '" name="motions" style="background-color:transparent; clear: none; border:0px none; border-image:none" readonly/></a></li>';
+			   day_list.innerHTML += '<li class="list-group-item day_list_title"><a><input value="' + workout_name + '" name="motions" style="background-color:transparent; clear: none; border:0px none; border-image:none" readonly/></a><span class="glyphicon glyphicon-minus motion-minus" aria-hidden="true" style="float:right; color:rgb(200, 34, 38)"></span</li>';
       }
       }
   })
@@ -204,3 +219,22 @@ function set_modal(){
     object1.text($('#set_num').val());
   })
 }
+
+/* ************************************************************ */
+
+/* 운동동작 지우기 */
+
+$(function(){
+  $('.motion-minus').click(function() {
+    // - 선택한 운동동작의 index 번호
+    var motion_index = $(this).closest('li').index();
+    // 해당 li요소
+    var motion_li = document.getElementsByClassName('day_list_title')[motion_index];
+
+    // 선택한 요소 지우기
+    $(motion_li).remove();
+
+    // 바로 데이터베이스로 정보 전송이 되도록
+    document.getElementById('add_workout_db').submit();
+  })
+});

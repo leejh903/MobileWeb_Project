@@ -9,8 +9,9 @@ module.exports = {
 	db_url: 'mongodb://localhost:27017/memberDB',
 	db_schemas: [//db 스키마
 		{file:'./info_schema', collection:'infos', schemaName:'InfoSchema', modelName:'InfoModel'},
-	    {file:'./user_schema', collection:'members', schemaName:'UserSchema', modelName:'UserModel'}
-
+	  {file:'./user_schema', collection:'members', schemaName:'UserSchema', modelName:'UserModel'},
+		{file:'./user_motion_schema', collection:'user_motions', schemaName:'UserMotionSchema', modelName:'UserMotionsModel'},
+		{file:'./motion_data_schema', collection:'motion_datas', schemaName:'MotionDataSchema', modelName:'MotionDataModel'}
 	],
 
 	// 라우팅 모듈 적는 곳
@@ -18,6 +19,7 @@ module.exports = {
 		// 라우팅 처리 할 file, type(get or post, 처리방법), path, method 필요
 		{file : './info', path : '/addinfo', method : 'addinfo', type : 'post'}
 		,{file : './info', path : '/showinfo', method : 'showinfo', type : 'get'}
+		,{file : './motion_data', path : '/motion_data', method : 'motion_data', type : 'post'}
 	],
 
 	facebook: {		// passport facebook

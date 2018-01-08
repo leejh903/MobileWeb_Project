@@ -103,11 +103,6 @@
               <input value= '<%= paramDates %>' style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly/ name="dates">
               </form>
 
-              <!-- 라이트창2 열기 -->
-              <form method="post" action="/motion_data" id="open_lightbox2">
-                <input value= '' style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly/ name="motion_data">
-              </form>
-
               </div>
               <!-- col-md-7 -->
 
@@ -183,7 +178,6 @@
        var clickdates = '<%= paramDates %>';
        clickdates = clickdates.replace(/ /gi,""); // 모든 공백 제거
        console.log(clickdates);
-
 
        /* ************************************************************ */
        // calendar 함수

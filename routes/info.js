@@ -9,6 +9,11 @@ var addinfo = function(req, res) {
   // 날짜 선택이 안되면 message 보내기
   if(paramsDates === undefined){
     console.log('날짜 데이터가 안 들어옴');
+    var motion_kor = '';
+    var motion_eng = '';
+    var picture_path = '';
+    var exp = '';
+
     var motions_list = '';
     var motions_Array = motions_list.split('');
     var Array_length = motions_Array.length;
@@ -16,7 +21,7 @@ var addinfo = function(req, res) {
     var paramDates = '';
     var message = '날짜를 선택하세요!!';
     var context = {
-      motions_list, motions_Array, Array_length, user, paramDates, message
+          motion_kor, motion_eng, picture_path, exp, motions_list, motions_Array, Array_length, user, paramDates, message
     };
     return res.render('show_info.ejs', context, function(err, html){
       if(err) {throw err;}
@@ -24,22 +29,9 @@ var addinfo = function(req, res) {
     });
   };
 
-  // 운동 동작이 선택이 안되면 message 보내기
+  // 운동 동작이 선택이 안되도 showinfo로 넘겨서 달력에 그 날짜 표시되도록
   if(paramsMotions === undefined){
-    console.log('운동동작 데이터가 안 들어옴');
-    var motions_list = '';
-    var motions_Array = motions_list.split('');
-    var Array_length = motions_Array.length;
-    var user = req.user;
-    var paramDates = '';
-    var message = '운동동작을 선택하세요!!';
-    var context = {
-      motions_list, motions_Array, Array_length, user, paramDates, message
-    };
-    return res.render('show_info.ejs', context, function(err, html){
-      if(err) {throw err;}
-      res.end(html);
-    });
+    paramsMotions = '';
   };
 
   console.log('요청 파라미터 : ' + paramsMotions + ',' + paramsDates + ',' + paramUser);
@@ -125,16 +117,21 @@ var showinfo = function(req, res){
         return;
       }
 
-      if(results && results.length != 0){
+      if(results && results.length != 0 && results[0]._doc.motions.length > 0){
         console.dir(results);
         console.dir('데이터 렌더링 준비')
+        var motion_kor = '';
+        var motion_eng = '';
+        var picture_path = '';
+        var exp = '';
+
         var motions_list = results[0]._doc.motions;
         var motions_Array = motions_list.split(',');
         var Array_length = motions_Array.length;
         var user = req.user;
         var message = '';
         var context = {
-          motions_list, motions_Array, Array_length, user, paramDates, message
+          motion_kor, motion_eng, picture_path, exp, motions_list, motions_Array, Array_length, user, paramDates, message
         };
 
         // 뷰 템플릿을 이용하여 렌더링한 후 전송
@@ -143,13 +140,18 @@ var showinfo = function(req, res){
           res.end(html);
         });
       } else {
+        var motion_kor = '';
+        var motion_eng = '';
+        var picture_path = '';
+        var exp = '';
+
         var motions_list = '';
         var motions_Array = motions_list.split('');
         var Array_length = motions_Array.length;
         var user = req.user;
         var message = '';
         var context = {
-          motions_list, motions_Array, Array_length, user, paramDates, message
+          motion_kor, motion_eng, picture_path, exp, motions_list, motions_Array, Array_length, user, paramDates, message
         };
         return req.app.render('show_info.ejs', context, function(err, html){
           if(err) {throw err;}

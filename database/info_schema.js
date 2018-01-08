@@ -16,11 +16,11 @@ Info_Schema.createSchema = function(mongoose) {
     users: { type: mongoose.Schema.ObjectId, ref: 'members'} // 사람 ID
     , dates: { type: String, index: {unique : false}, 'default' : '' }  // 운동 날짜
     , motions: { type: String}  // 운동 동작들
-    , amounts: [{
-        motion: { type: mongoose.Schema.ObjectId, ref: 'infos'} // 자기 테이블에 있는 필드 쓸수있을까?
-        , set: {type: Number, 'default': '0'} // 세트
-        , kg: {type: Number, 'default': '0'} // 무게
-      }]
+    // , amounts: [{
+    //     motion: { type: mongoose.Schema.ObjectId, ref: 'infos'} // 자기 테이블에 있는 필드 쓸수있을까?
+    //     , set: {type: Number, 'default': '0'} // 세트
+    //     , kg: {type: Number, 'default': '0'} // 무게
+    //   }]
     , created_at : {type : Date, index : {unique : false}, 'default' : Date.now}
     , updated_at : {type : Date, index : {unique : false}, 'default' : Date.now}
   });

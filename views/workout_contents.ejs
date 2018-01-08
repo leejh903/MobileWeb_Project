@@ -97,13 +97,13 @@
    <div class="row">
      <div class="col-md-6">
        <!-- 동작 설명 사진 -->
-       <img id="img_motion" src="img/Romanian-Deadlift.jpg" onerror="this.src='../public/img/default_image.png'"/>
+       <img id="img_motion" src="<%= picture_path %>" onerror="this.src='../public/img/default_image.png'"/>
        <!-- 동작 제목 -->
        <div>
-         <a>루마니안 데드리프트</a></br>
-         <a>Romanian Deadlift</a>
+         <a id="title_motion"><%= motion_kor %></a></br>
+         <a><%= motion_eng %></a>
        </div>
-       <p>루마니안 데프리프트는 무게를 들고 상체를 숙였다가 펴주어 등과 허리, 하체를 강화시켜주는 운동이다. 일반적으로 데프리프트 중에서 가장 많이 구사되는 동작으로 탄력있는 뒷태와 힙업 및 강한 하체를 만드는데 효과적인 운동이다.</p>
+       <p><%= exp %></p>
      <!-- col-md-6 end-->
    </div>
 
