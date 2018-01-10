@@ -10,9 +10,10 @@ User_Motion_Schema.createSchema = function(mongoose) {
 
   // 스키마 정의
   var UserMotionSchema = mongoose.Schema({
-    users: { type: mongoose.Schema.ObjectId, ref: 'members'} // 사람 ID
+    users: { type: String} // 사람 ID
     , dates: { type: String, index: {unique : false}, 'default' : '' }  // 운동 날짜
     , motions: { type: String}
+    , set_num : { type: Number} // 세트 번호
     , set: {type: Number, 'default': '0'}  // 세트
     , kg: {type: Number, 'default': '0'} // 무게
     , created_at : {type : Date, index : {unique : false}, 'default' : Date.now}

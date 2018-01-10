@@ -75,7 +75,7 @@
                               <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
                             </tr>
                           </table>
-                          <input value=' ' name="dates" id="calendar_input" style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly/></input>
+                          <input value=' ' name="dates" id="calendar_input" style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly/>
                         </form>
                       </div>
                   </div>
@@ -101,12 +101,16 @@
 
               <button type="button" id="button_add_workout_list" class="btn btn-default btn-circle btn-lg"><i id="plus" class="glyphicon glyphicon-plus"></i></button>
               <input value= '<%= paramDates %>' style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly/ name="dates">
+              <input value='' name="del_motion" id="del_motion" style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly  />
               </form>
 
               <!-- 라이트창2 열기 -->
               <form method="post" action="/motion_data" id="open_lightbox2">
-                <input value= '' style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly/ name="motion_data">
+                <input value='' name="motion_data" id="motion_data" style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly  />
+                <input value='' name="lightbox_dates" id="calendar_input2" style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly/>
+                <input value='<%= motions_list %>' name="lightbox_motions" style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly/>
               </form>
+
 
               </div>
               <!-- col-md-7 -->
@@ -184,6 +188,11 @@
        clickdates = clickdates.replace(/ /gi,""); // 모든 공백 제거
        console.log(clickdates);
 
+      // 라이트창2 열기
+       $('#calendar_input2').val(clickdates.replace(/ /gi, ""));
+
+      // 운동동작 db지우기
+      $('#calendar_input3').val(clickdates.replace(/ /gi, ""));
 
        /* ************************************************************ */
        // calendar 함수
@@ -271,6 +280,7 @@
               // form 태그 안에 날짜 값 전달되도록(안보이게 설정)
               // inputdate.replcae는 공백 제거하기 위함
              $('#calendar_input').val(inputdate.replace(/ /gi, ""));
+
              // action 실행
              document.getElementById('calendar_output').submit();
 

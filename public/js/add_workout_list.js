@@ -80,7 +80,7 @@ $(function(){
     console.log(this);
 
     // input에 값 넣고 db로 보내기
-    $('#open_lightbox2 > input').val($(this).val());
+    $('#motion_data').val($(this).val());
 
     console.log($('#open_lightbox2 > input').val());
 
@@ -119,7 +119,7 @@ $set_plus.click(function(){
 
 // 세트 제거
 $set_minus.click(function(){
-  if(set_index > 3){ // 3개 세트는 고정
+  if(set_index > 0){ // 0개 이상부터
     set_index--;
     console.log(set_index);
     set_list.removeChild(set_list.lastChild);
@@ -230,6 +230,8 @@ $(function(){
     var motion_index = $(this).closest('li').index();
     // 해당 li요소
     var motion_li = document.getElementsByClassName('day_list_title')[motion_index];
+
+    $('#del_motion').val($(motion_li).find('input').val());
 
     // 선택한 요소 지우기
     $(motion_li).remove();

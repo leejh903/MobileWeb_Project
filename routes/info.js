@@ -2,6 +2,9 @@
 var addinfo = function(req, res) {
   console.log('info 모듈 안에 있는 addinfo가 호출됨')
 
+  var paramId = req.user._id;
+  var paramMotion_del = req.body.del_motion || req.query.del_motion
+
   var paramsMotions = req.body.motions || req.query.motions;
   var paramsDates = req.body.dates || req.query.dates;
   var paramUser = req.user.email;
@@ -20,8 +23,11 @@ var addinfo = function(req, res) {
     var user = req.user;
     var paramDates = '';
     var message = '날짜를 선택하세요!!';
+
+    var set_data='';
+
     var context = {
-          motion_kor, motion_eng, picture_path, exp, motions_list, motions_Array, Array_length, user, paramDates, message
+          motion_kor, motion_eng, picture_path, exp, motions_list, motions_Array, Array_length, user, paramDates, message, set_data
     };
     return res.render('show_info.ejs', context, function(err, html){
       if(err) {throw err;}
@@ -37,6 +43,23 @@ var addinfo = function(req, res) {
   console.log('요청 파라미터 : ' + paramsMotions + ',' + paramsDates + ',' + paramUser);
 
   var database = req.app.get('database');
+
+  database.UserMotionsModel.remove({users: paramId, dates: paramsDates, motions: paramMotion_del}, function(err, results) {
+    if(err) {
+      console.error('운동동작 정보 조회중 오류 발생 :' + err.stack);
+
+      res.writeHead('200', {'Content-Type':'text/html;charset=utf8'});
+      res.write('<h2>운동동작 정보 조회 중 오류 발생 </h2>');
+      res.write('<p>' + err.stack + '</p>');
+      res.end();
+
+      return;
+    }
+
+    console.dir('성공적으로 해당 날짜 모션데이터 삭제');
+    }
+    )
+
 
   // 데이터베이스 객체가 초기화된 경우
   if(database.db) {
@@ -130,8 +153,11 @@ var showinfo = function(req, res){
         var Array_length = motions_Array.length;
         var user = req.user;
         var message = '';
+
+        var set_data='';
+
         var context = {
-          motion_kor, motion_eng, picture_path, exp, motions_list, motions_Array, Array_length, user, paramDates, message
+          motion_kor, motion_eng, picture_path, exp, motions_list, motions_Array, Array_length, user, paramDates, message, set_data
         };
 
         // 뷰 템플릿을 이용하여 렌더링한 후 전송
@@ -150,8 +176,11 @@ var showinfo = function(req, res){
         var Array_length = motions_Array.length;
         var user = req.user;
         var message = '';
+
+        var set_data='';
+
         var context = {
-          motion_kor, motion_eng, picture_path, exp, motions_list, motions_Array, Array_length, user, paramDates, message
+          motion_kor, motion_eng, picture_path, exp, motions_list, motions_Array, Array_length, user, paramDates, message, set_data
         };
         return req.app.render('show_info.ejs', context, function(err, html){
           if(err) {throw err;}

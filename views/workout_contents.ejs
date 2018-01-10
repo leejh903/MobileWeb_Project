@@ -109,21 +109,19 @@
 
      <div class="col-md-6" id="plan_workout_table">
        <ul class="list-group" id="plan_workout_ul">
-         <li class="list-group-item">
+         <!-- <li class="list-group-item">
            <p>set1</p>
            <span> <a>0</a>회 </span>
            <span> <a>0</a>kg </span>
-         </li>
-         <li class="list-group-item">
-           <p>set2</p>
-           <span> <a>0</a>회 </span>
-           <span> <a>0</a>kg </span>
-        </li>
-         <li class="list-group-item">
-           <p>set3</p>
-           <span> <a>0</a>회 </span>
-           <span> <a>0</a>kg </span>
-        </li>
+         </li>-->
+      <% if (set_data.length > 0) { %>
+      <% for(var i=0; i < set_data.length; i++){ %>
+        <li class="list-group-item">
+        <p>set<%= set_data[i].set_num %></p>
+        <span> <a><%= set_data[i].set %></a>회 </span>
+        <span> <a><%= set_data[i].kg %></a>kg </span>
+      <% } %>
+      <% } %>
        </ul>
        <span>
          <button type="button" class="btn btn-default "><i class="glyphicon glyphicon-plus" id="add_amount_workout"></i></button>
