@@ -29,36 +29,122 @@
                 </div>
 
                 <div class="row">
-              <% include ./calendar.ejs %>
+                  <!-- 달력 영역 -->
+                  <div class="col-md-5">
+                    <!-- 날짜 선택이 안되어있으면 표시 -->
+                    <% if (message.length > 0) { %>
+                    <div class="alert alert-danger" style="background-color:rgb(200, 34, 38); color:white"><%= message %></div>
+                    <% } %>
+                      <div id="calendar_wrap">
+                        <div class="table-responsive" style="border:0">
+                          <form action="/showdiet" id="calendar_output" method="get">
+                          <table class="table">
+                            <caption id="caption" style="text-align:center">
+                              <a href="#" id="prev">prev &lt;&nbsp;&nbsp;&nbsp;</a>
+                              <span class="year"></span>년
+                              <span class="month"></span>월
+                              <a href="#" id="next">&nbsp;&nbsp;&nbsp;&gt; next</a>
+                            </caption>
+                            <thead>
+                            <tr>
+                              <th>일</th><th>월</th><th>화</th><th>수</th>
+                              <th>목</th><th>금</th><th>토</th>
+                            </tr>
+                          </thead>
+                            <tr>
+                              <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                              <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                              <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                              <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                              <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                              <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                              <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                              <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                              <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                              <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                              <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                              <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                            </tr>
+                          </table>
+                          <input value=' ' name="dates" id="calendar_input" style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly/>
+
+                        </form>
+                      </div>
+                  </div>
+                  </div>
+                  <!-- div class="col-md-5"  -->
 
               <!-- 식단 기록 영역 -->
               <div class="col-md-7">
                 <h4 style="color:rgb(200, 34, 38); text-align:center">식단기록</h4>
               </br>
                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+              <% if(diet_data.length > 0) {
+
+                var data_length = diet_data.length
+
+                  for(var i = 0; i < data_length; i ++) {
+                 if(diet_data[i]._doc.meals == 0){ %>
                   <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingOne">
-                        <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne"> 아침 </a> </h4>
+                        <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false"> 아침 </a> </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                        <div class="panel-body">아침내용 </div>
+                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" name="아침" value="0">
+                        <div class="panel-body"><%= diet_data[i]._doc.contents %></div>
                     </div>
                 </div>
+                <% } %>
 
+                <% if(diet_data[i]._doc.meals == 1){ %>
                 <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="headingTwo">
-                    <h4 class="panel-title"> <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"> 점심 </a> </h4>
+                    <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false"> 점심 </a> </h4>
                 </div>
-                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                    <div class="panel-body"> 점심내용 </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" name="점심" value="1">
+                    <div class="panel-body"><%= diet_data[i]._doc.contents %></div>
                 </div>
               </div>
+              <% } %>
+
+              <% if(diet_data[i]._doc.meals == 2){ %>
+              <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false"> 저녁 </a> </h4>
+              </div>
+              <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" name="저녁" value="2">
+                  <div class="panel-body"><%= diet_data[i]._doc.contents %></div>
+              </div>
+            </div>
+            <% } %>
+
+            <% if(diet_data[i]._doc.meals == 3){ %>
+            <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingTwo">
+                <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false"> 간식 </a> </h4>
+            </div>
+            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" name="간식" value="3">
+                <div class="panel-body"><%= diet_data[i]._doc.contents %></div>
+            </div>
+          </div>
+          <% } %>
+          <% } %>
+          <% } %>
+
             </div>
 
               <div class="btn-group">
               <button type="button" id="add_dietlist_btn" class="btn btn-default btn-circle btn-lg btn-primary dropdown-toggle" data-toggle="dropdown"><i id="plus" class="glyphicon glyphicon-plus"> <span class="caret"></span></i></button>
-                     <!-- <button type="button" class="btn btn-default btn-primary dropdown-toggle" data-toggle="dropdown"> 클릭   <span class="caret"></span> -->
-                    </button>
                   <ul class="dropdown-menu" role="menu">
                    <li><a href="#">아침</a></li>
                    <li><a href="#">점심</a></li>
@@ -87,14 +173,13 @@
                               </div>
                               <!-- modal-body -->
                               <div class="modal-body">
-                                <form role="form" class="form-inline">
+                                <form action="/adddiet" method="post" role="form" class="form-inline">
                                     <div class="form-group">
-                                        <textarea type="text" class="form-control"></textarea>
+                                        <textarea type="text" name="meal_contents" class="form-control" id="meal_textarea"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <button type="submit">확인</button>
                                     </div>
-                                </form>
                               </div>
                           </div>
                           <!-- 모달 콘텐츠 -->
@@ -102,6 +187,11 @@
                       <!-- 모달 다이얼로그 -->
                   </div>
                   <!-- 모달 전체 윈도우 -->
+
+                  <input value='' name="meal_index" id="meal_index" style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly/>
+                  <input value='<%= paramDates %>' name="dates" style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly/>
+                  </form>
+
                 </div>
 
 
@@ -116,7 +206,7 @@
      <!-- /#wrapper -->
 
         <script src="./js/diet_list.js"></script>
-        <script src="./js/calendar.js"></script>
+        <!-- <script src="./js/calendar.js"></script> -->
 
         <!-- Bootstrap core JavaScript -->
         <script src="vendor/jquery/jquery.min.js"></script>
@@ -167,6 +257,131 @@
         				$("#navigation_mobile").removeClass("active"); // 메뉴 버튼 비활성화
         		}
         	});
+
+          // 클릭한 날 표시하기
+          var clickdates = '<%= paramDates %>';
+          clickdates = clickdates.replace(/ /gi,""); // 모든 공백 제거
+          console.log(clickdates);
+
+          /* ************************************************************ */
+          // calendar 함수
+          function calendar(new_year, new_month) {
+              // 특정 년,월을 시작일(1일)부터 조회(year, month, date(1일부터시작))
+              var d = new Date(new_year, new_month-1, 1);
+
+              // 월별 일수 구하기 공식
+              var d_length = 32 - new Date(new_year, new_month-1, 32).getDate(); //공식
+
+              var year = d.getFullYear();//년
+              var month = d.getMonth();//월
+              var date = d.getDate();//일
+              var day = d.getDay();//요일
+
+                console.log(year, month, date, day, d_length);
+
+              // caption 영역에 년, 월을 표시할 객체를 변수에 저장
+              var $caption_year = $('.year');//년
+              var $caption_month = $('.month');//월
+
+                //날자가 표시될 달력 테이블의 td 객체를 지정(배열객체(td[0]~td[41]))
+              var $start_day = $('tr td');
+
+              // 달력 테이블 초기화
+              $start_day.each(function (i) {
+                  $(this).html('&nbsp;')
+              });
+
+              // 한달치 날짜를 테이블에 시작요일(day)부터 순서대로 표시(d_length까지)
+              for (var i = day; i < day + d_length; i++) {
+
+               // 10이하 날짜일 때 앞에 0붙여주기
+               var ddd = date;
+               var mmm = month+1;
+
+               if(ddd < 10) { ddd = '0' + ddd}
+               if(mmm < 10) { mmm = '0' + mmm}
+
+                var calendardate = year + '-' + mmm + '-' + ddd;
+
+                // 오늘 날짜 나타낼 수 있도록
+                var today = new Date();
+                var dd = today.getDate();
+                var mm = today.getMonth()+1;
+                var yyyy = today.getFullYear();
+
+               // 10이하 날짜일 때 앞에 0붙여주기
+               if(mm < 10) { mm = '0' + mm }
+               if(dd < 10) { dd = '0' + dd }
+
+                var todaydate = yyyy + '-' + mm + '-' + dd
+
+                  if(todaydate == calendardate){
+                    console.log('날짜가 일치하는 날이 존재');
+                    $start_day.eq(i).html('<div style= "background-color:rgb(200, 34, 38); border-radius: 100%; width: 20px;"> <a style="color:white; padding-left:4px;">' + date +'</a></div>'); // 다르게
+                  } else {
+                    $start_day.eq(i).html(date);
+                  }
+
+                  if(clickdates == calendardate && clickdates != todaydate){
+                    console.log('클릭한 날 표시 호출');
+                    $start_day.eq(i).html('<div style= "background-color:grey; border-radius: 100%; width: 20px;"> <a style="color:white; padding-left:2px;">' + date +'</a></div>'); // 다르게
+                  }
+
+                  date++;
+              }
+
+              // caption 년, 월 표시
+              $caption_year.html(year);
+              $caption_month.html(month+1);
+
+              // 날짜 클릭 하였을 때 이벤트 추가
+              for (var i = day; i < day + d_length; i++) {
+                 $start_day.eq(i).click(function() {
+                  console.log(year + '-' + (month+1) + '-' + $(this).text());
+
+                  var mm = month + 1;
+                  var dd = $(this).text();
+
+                  if(mm<10){ mm = '0' + mm }
+                  if(dd<10){ dd = '0' + dd }
+
+                  var inputdate = year + '-' + mm + '-' + dd;
+
+                 // form 태그 안에 날짜 값 전달되도록(안보이게 설정)
+                 // inputdate.replcae는 공백 제거하기 위함
+                $('#calendar_input').val(inputdate.replace(/ /gi, ""));
+
+                // action 실행
+                document.getElementById('calendar_output').submit();
+
+                 })
+              }
+
+
+          }
+
+          (function () {
+              var $prev = $('#prev');//이전
+              var $next = $('#next');//이후
+              var year = new Date().getFullYear();//년
+              var month = new Date().getMonth()+1;//월
+
+                //현재 시점을 기준으로 calendar() 함수 호출
+                console.log(year,month);
+                calendar(year, month);
+
+                //이전달 정보를 요청하는 네비게이션 버튼의 이벤트 핸들러 설정
+              $prev.click(function () {
+                 calendar(year, --month);//현재월 --
+              });
+
+                 //다음달 정보를 요청하는 네비게이션 버튼의 이벤트 핸들러 설정
+              $next.click(function () {
+                  calendar(year, ++month);//현재월 ++
+              });
+
+          })();  // 메인메소드처럼 (function () ) () 즉시 실행 되게 하는 것
+
 
         </script>
 

@@ -10,7 +10,7 @@ var addinfo = function(req, res) {
   var paramUser = req.user.email;
 
   // 날짜 선택이 안되면 message 보내기
-  if(paramsDates === undefined){
+  if(paramsDates === undefined || paramDates.length == 0){
     console.log('날짜 데이터가 안 들어옴');
     var motion_kor = '';
     var motion_eng = '';
