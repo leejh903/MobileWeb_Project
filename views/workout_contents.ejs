@@ -156,19 +156,18 @@
               </div>
               <!-- modal-body -->
               <div class="modal-body">
-                <form role="form" class="form-inline">
-                    <div class="form-group">
-                        <input type="number" class="form-control" id="set_num">
-                        <label for="set_number">회</label>
-                    </div>
-                    <div class="form-group">
-                        <input type="number" class="form-control" id="kg_num">
-                        <label for="kg_number">kg</label>
-                    </div>
-                    <div class="form-group" id="set_workout_amt">
-                        <button type="">확인</button>
-                    </div>
-                </form>
+                <form role="form" action="/add_motionset" method="post" class="form-inline">
+                  <div class="form-group">
+                      <input type="number" name="set_count_kg" class="form-control" id="kg_num">
+                      <label for="set_count_kg">kg</label>
+                  </div>
+                  <div class="form-group">
+                      <input type="number" name="set_count" class="form-control" id="set_num">
+                      <label for="set_count">회</label>
+                  </div>
+                  <div class="form-group" id="set_workout_amt">
+                      <button type="submit">확인</button>
+                  </div>
               </div>
           </div>
           <!-- 모달 콘텐츠 -->
@@ -176,4 +175,11 @@
       <!-- 모달 다이얼로그 -->
   </div>
   <!-- 모달 전체 윈도우 -->
+
+  <input value='<%= paramDates %>' name='set_dates' style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly/>
+  <input value='<%= motion_kor %>' name='set_motion' style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly/>
+  <input value='' name='set_index' id='each_set_index' style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly/>
+  <input value='<%= motions_list %>' name="set_motions" style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly/>
+
+</form>
 </div>

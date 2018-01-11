@@ -44,6 +44,7 @@ var addinfo = function(req, res) {
 
   var database = req.app.get('database');
 
+  // 운동동작 삭제
   database.UserMotionsModel.remove({users: paramId, dates: paramsDates, motions: paramMotion_del}, function(err, results) {
     if(err) {
       console.error('운동동작 정보 조회중 오류 발생 :' + err.stack);
@@ -56,7 +57,7 @@ var addinfo = function(req, res) {
       return;
     }
 
-    console.dir('성공적으로 해당 날짜 모션데이터 삭제');
+    console.dir('성공적으로 해당 날짜 모션데이터 삭제!');
     }
     )
 

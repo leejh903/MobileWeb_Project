@@ -88,6 +88,7 @@ $(function(){
 
   });
 
+  // 라이트창 운동동작 타이틀(한국어)에 데이터 채워져 있으면 라이트창2 open
   if($('#title_motion').text().length > 0){
   // 라이트창2 열기
   $("#wrapper").removeClass("toggled");
@@ -113,17 +114,26 @@ $set_plus.click(function(){
   if(event.target.nodeName = "I"){
   set_index++;
   console.log(set_index);
-  set_list.innerHTML += '<li class="list-group-item"><p>set' + set_index + '</p><span><a>0</a>kg</span><span> <a>0</a>회</span>';
+  // set_list.innerHTML += '<li class="list-group-item"><p>set' + set_index + '</p><span><a>0</a>kg</span><span> <a>0</a>회</span>';
   }
+
+  // 세트 인덱스 정보 db보낼 파라미터 val로 전송
+  $('#set_index').val(set_index);
+
+  document.getElementById('add_set_db').submit();
 })
 
 // 세트 제거
 $set_minus.click(function(){
   if(set_index > 0){ // 0개 이상부터
     set_index--;
-    console.log(set_index);
-    set_list.removeChild(set_list.lastChild);
+    console.log(set_index+1);
+    // set_list.removeChild(set_list.lastChild);
     }
+
+    $('#del_index').val(set_index+1);
+
+    document.getElementById('del_set_db').submit();
 })
 console.log('set_list : ' + set_list);
 }
@@ -203,21 +213,27 @@ function set_modal(){
     var $test1 = $('#plan_workout_ul > li').eq(event_info);
     var $test2 = $('test1').find('span');
 
-    // console.log(event_info);
+    console.log('인덱스 번호 : ' + (event_info+1));
+    $('#each_set_index').val(event_info+1);
+
     object1 = $test1.eq(0).find('a').eq(0);
     object2 = $test1.eq(0).find('a').eq(1);
     // console.log(object1.text());  // 회
     // console.log(object2.text());  // kg
+
+    $('#kg_num').val($(this).find('a').eq(1).text());
+    $('#set_num').val($(this).find('a').eq(0).text());
+
   })
 
 
-  $set_workout_amt.click(function() {
-    // console.log($('#set_num').val());
-    // console.log($('#kg_num').val());
-
-    object2.text($('#kg_num').val());
-    object1.text($('#set_num').val());
-  })
+  // $set_workout_amt.click(function() {
+  //   // console.log($('#set_num').val());
+  //   // console.log($('#kg_num').val());
+  //
+  //   object2.text($('#kg_num').val());
+  //   object1.text($('#set_num').val());
+  // })
 }
 
 /* ************************************************************ */
@@ -240,3 +256,12 @@ $(function(){
     document.getElementById('add_workout_db').submit();
   })
 });
+
+
+/* ************************************************************ */
+
+/* 각 운동동작의 세트 정보 저장하기 */
+
+$(function() {
+
+})

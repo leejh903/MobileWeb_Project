@@ -11,7 +11,7 @@ module.exports = {
 		{file:'./info_schema', collection:'infos', schemaName:'InfoSchema', modelName:'InfoModel'},
 	  {file:'./user_schema', collection:'members', schemaName:'UserSchema', modelName:'UserModel'},
 		{file:'./user_motion_schema', collection:'user_motions', schemaName:'UserMotionSchema', modelName:'UserMotionsModel'},
-		{file:'./motion_data_schema', collection:'motion_datas', schemaName:'MotionDataSchema', modelName:'MotionDataModel'}
+		{file:'./motion_data_schema', collection:'motion_datas', schemaName:'MotionDataSchema', modelName:'MotionDataModel'},
 	],
 
 	// 라우팅 모듈 적는 곳
@@ -20,6 +20,8 @@ module.exports = {
 		{file : './info', path : '/addinfo', method : 'addinfo', type : 'post'}
 		,{file : './info', path : '/showinfo', method : 'showinfo', type : 'get'}
 		,{file : './motion_data', path : '/motion_data', method : 'motion_data', type : 'post'}
+		,{file : './motion_set', path : '/add_motionset', method : 'add_motionset', type : 'post'}
+		,{file : './motion_set', path : '/del_motionset', method : 'del_motionset', type : 'post'}
 	],
 
 	facebook: {		// passport facebook

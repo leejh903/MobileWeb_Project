@@ -67,17 +67,21 @@ var motion_data = function(req, res) {
           set_data = ''
         }
 
-          var context = {
-            motion_kor, motion_eng, picture_path, exp, motions_list, motions_Array, Array_length, user, paramDates, message, set_data
-          };
+        var context = {
+          motion_kor, motion_eng, picture_path, exp, motions_list, motions_Array, Array_length, user, paramDates, message, set_data
+        };
 
-          // 뷰 템플릿 이용하여 렌더링한 후 전송
-          return req.app.render('show_info.ejs', context, function(err, html){
-            if(err) {throw err;}
-            console.log('응답 웹 문서 : ' + html)
-            res.end(html);
-          });
+        console.log(context);
+
+        // 뷰 템플릿 이용하여 렌더링한 후 전송
+        return req.app.render('show_info.ejs', context, function(err, html){
+          if(err) {throw err;}
+          console.log('응답 웹 문서 : ' + html)
+          res.end(html);
+        });
+
         })
+
       }
     })
   } else {

@@ -2,11 +2,11 @@
 
 /* 캘린더 함수 부분 */
 
- td > a { color: black; cursor: hand;}
- td > a:link { text-decoration : none; }
- td > a:hover { color: rgb(160, 160, 160); }
+ td { color: black; cursor: pointer;}
+ td:link { text-decoration : none; }
+ td:hover { color: rgb(160, 160, 160); }
 
- th:first-child, td:first-child > a { color: rgb(200, 34, 38);}
+ th:first-child, td:first-child { color: rgb(200, 34, 38);}
 
 #prev, #next{
   display: inline-block;

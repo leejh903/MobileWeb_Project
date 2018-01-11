@@ -107,10 +107,29 @@
               <!-- 라이트창2 열기 -->
               <form method="post" action="/motion_data" id="open_lightbox2">
                 <input value='' name="motion_data" id="motion_data" style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly  />
-                <input value='' name="lightbox_dates" id="calendar_input2" style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly/>
+                <input value='<%= paramDates %>' name="lightbox_dates" id="calendar_input2" style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly/>
                 <input value='<%= motions_list %>' name="lightbox_motions" style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly/>
               </form>
 
+              <!-- 각 운동동작의 세트정보 추가 -->
+              <form method="post" action="/add_motionset" id="add_set_db">
+                <input value='<%= paramDates %>' name='set_dates' style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly/>
+                <input value='<%= motion_kor %>' name='set_motion' style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly/>
+                <input value='' name='set_index' id='set_index' style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly/>
+                <input value='0' name='set_count' style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly/>
+                <input value='0' name='set_count_kg' style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly/>
+                <input value='<%= motions_list %>' name="set_motions" style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly/>
+              </form>
+
+              <!-- 각 운동동작의 세트정보 제거 -->
+              <form method="post" action="/del_motionset" id="del_set_db">
+                <input value='<%= paramDates %>' name='del_dates' style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly/>
+                <input value='<%= motion_kor %>' name='del_motion' style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly/>
+                <input value='' name='del_index' id='del_index' style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly/>
+                <input value='0' name='del_count' style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly/>
+                <input value='0' name='del_count_kg' style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly/>
+                <input value='<%= motions_list %>' name="del_motions" style="background-color:transparent; clear: none; border:0px none; border-image:none; color:transparent" readonly/>
+              </form>
 
               </div>
               <!-- col-md-7 -->
@@ -188,12 +207,6 @@
        clickdates = clickdates.replace(/ /gi,""); // 모든 공백 제거
        console.log(clickdates);
 
-      // 라이트창2 열기
-       $('#calendar_input2').val(clickdates.replace(/ /gi, ""));
-
-      // 운동동작 db지우기
-      $('#calendar_input3').val(clickdates.replace(/ /gi, ""));
-
        /* ************************************************************ */
        // calendar 함수
        function calendar(new_year, new_month) {
@@ -250,13 +263,14 @@
                  console.log('날짜가 일치하는 날이 존재');
                  $start_day.eq(i).html('<div style= "background-color:rgb(200, 34, 38); border-radius: 100%; width: 20px;"> <a style="color:white; padding-left:4px;">' + date +'</a></div>'); // 다르게
                } else {
-                 $start_day.eq(i).html('<a>' + date +'</a>');
+                 $start_day.eq(i).html(date);
                }
 
                if(clickdates == calendardate && clickdates != todaydate){
                  console.log('클릭한 날 표시 호출');
                  $start_day.eq(i).html('<div style= "background-color:grey; border-radius: 100%; width: 20px;"> <a style="color:white; padding-left:2px;">' + date +'</a></div>'); // 다르게
                }
+
                date++;
            }
 
